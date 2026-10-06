@@ -1,0 +1,7 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.image }}<img class="page-img" src="{{ . | relURL }}" alt="{{ $.Title }}">{{ end }}
+  <div class="content">{{ .Content }}</div>
+</article>
+{{ end }}

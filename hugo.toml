@@ -1,0 +1,30 @@
+baseURL = "https://www.stephanieslen.com/"
+locale = "en-us"
+title = "Stephanie Slen"
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  description = "Personal website of Stephanie Slen."
+  email = "hello@example.com"   # TODO: replace with your real email
+  instagram = "https://www.instagram.com/stephanieslen/"
+
+[menus]
+  [[menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 20
+  [[menus.main]]
+    name = "Portfolio"
+    pageRef = "/portfolio"
+    weight = 30
+  [[menus.main]]
+    name = "Contact"
+    pageRef = "/contact"
+    weight = 40
+
+[markup.goldmark.renderer]
+  unsafe = true

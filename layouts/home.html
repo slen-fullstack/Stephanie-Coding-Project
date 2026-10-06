@@ -1,0 +1,17 @@
+{{ define "main" }}
+<section class="hero">
+  {{ with .Params.image }}<img class="hero-img" src="{{ . | relURL }}" alt="{{ site.Title }}">{{ end }}
+  <h1>{{ with .Params.heading }}{{ . }}{{ else }}{{ site.Title }}{{ end }}</h1>
+  {{ with .Params.subheading }}<p class="lead">{{ . }}</p>{{ end }}
+</section>
+<div class="content">{{ .Content }}</div>
+
+{{ with site.GetPage "/portfolio" }}
+{{ with first 3 .Pages }}
+<section>
+  <h2>Recent work</h2>
+  {{ partial "cards.html" . }}
+</section>
+{{ end }}
+{{ end }}
+{{ end }}

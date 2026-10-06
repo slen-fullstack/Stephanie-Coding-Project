@@ -1,0 +1,12 @@
+<div class="cards">
+  {{ range . }}
+  {{ $title := .Title }}
+  <a class="card" href="{{ .RelPermalink }}">
+    {{ with .Params.image }}<img src="{{ . | relURL }}" alt="{{ $title }}" loading="lazy">{{ end }}
+    <div class="card-body">
+      <h3>{{ .Title }}</h3>
+      {{ with .Summary }}<p>{{ . | plainify | truncate 140 }}</p>{{ end }}
+    </div>
+  </a>
+  {{ end }}
+</div>

@@ -1,0 +1,57 @@
+:root {
+  --bg: #fbfaf7;
+  --text: #2b2b2b;
+  --muted: #6b6b6b;
+  --accent: #8a5a44;
+  --border: #e6e2da;
+  --card: #ffffff;
+  --max: 960px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1a18;
+    --text: #ece9e3;
+    --muted: #a9a49b;
+    --accent: #d39a7c;
+    --border: #34312c;
+    --card: #24221f;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.7 "Inter", system-ui, sans-serif;
+}
+h1, h2, h3 { font-family: "Lora", Georgia, serif; font-weight: 600; line-height: 1.25; }
+a { color: var(--accent); }
+img { max-width: 100%; height: auto; display: block; }
+.container { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+main.container { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 70vh; }
+
+.site-header { border-bottom: 1px solid var(--border); }
+.header-inner { display: flex; flex-wrap: wrap; gap: .75rem 2rem; align-items: center; justify-content: space-between; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.site-title { font-family: "Lora", Georgia, serif; font-size: 1.5rem; font-weight: 600; color: var(--text); text-decoration: none; }
+.nav { list-style: none; display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 0; padding: 0; }
+.nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
+.nav a:hover, .nav a.active { color: var(--accent); }
+
+.hero { text-align: center; padding: 2rem 0 1rem; }
+.hero h1 { font-size: clamp(2rem, 6vw, 3.25rem); margin: .5rem 0; }
+.hero-img { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; margin: 0 auto 1rem; }
+.lead { font-size: 1.2rem; color: var(--muted); }
+.content { max-width: 680px; margin: 0 auto; }
+.page-img { margin: 1.5rem 0; border-radius: 6px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.card { display: block; background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .15s ease; }
+.card:hover { transform: translateY(-3px); }
+.card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.card-body { padding: 1rem 1.25rem; }
+.card-body h3 { margin: 0 0 .4rem; }
+.card-body p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+.site-footer { border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; text-align: center; padding: 1.5rem 0; }
+.site-footer a { color: var(--muted); }

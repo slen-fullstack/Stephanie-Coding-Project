@@ -1,0 +1,9 @@
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      {{ with site.Params.instagram }}<a href="{{ . }}">Instagram</a> · {{ end }}
+      {{ with site.Params.email }}<a href="mailto:{{ . }}">Email</a> · {{ end }}
+      &copy; {{ now.Year }} {{ site.Title }}
+    </p>
+  </div>
+</footer>
