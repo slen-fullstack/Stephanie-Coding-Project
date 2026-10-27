@@ -1,0 +1,40 @@
+{{- /* Supernova loading screen. Lines come from data/home.yaml → loader.messages. */ -}}
+{{- $msgs := slice -}}
+{{- with .loader }}{{ with .messages }}{{ $msgs = . }}{{ end }}{{ end -}}
+<div id="loader" role="status" aria-label="Loading" data-messages="{{ $msgs | jsonify }}">
+  <div class="loader-halo" aria-hidden="true"></div>
+  <div class="loader-core" aria-hidden="true"></div>
+  <canvas id="loader-warp" aria-hidden="true"></canvas>
+  <div class="loader-shock" aria-hidden="true"></div>
+  <div class="loader-flash" aria-hidden="true"></div>
+  <div class="loader-stage">
+    <svg id="loader-star" viewBox="-150 -150 300 300" aria-hidden="true">
+      <defs>
+        <radialGradient id="loader-auraGrad">
+          <stop offset="0" stop-color="#fff6c8" stop-opacity=".95"/>
+          <stop offset=".25" stop-color="#ffd86b" stop-opacity=".55"/>
+          <stop offset=".6" stop-color="#ff9e3d" stop-opacity=".15"/>
+          <stop offset="1" stop-color="#ff9e3d" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="loader-starFill" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#fff3b0"/><stop offset=".5" stop-color="#ffc94a"/><stop offset="1" stop-color="#ff8a4c"/>
+        </linearGradient>
+        <radialGradient id="loader-coreFill">
+          <stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="loader-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+        <path id="loader-spark" d="M0 -10 C1.5 -2 2 -1.5 10 0 C2 1.5 1.5 2 0 10 C-1.5 2 -2 1.5 -10 0 C-2 -1.5 -1.5 -2 0 -10Z"/>
+      </defs>
+      <g id="loader-rays" opacity=".5"></g>
+      <circle id="loader-aura" r="120" fill="url(#loader-auraGrad)"/>
+      <g id="loader-starbody">
+        <path d="M0 -62 L16 -20 L60 -18 L26 10 L37 54 L0 30 L-37 54 L-26 10 L-60 -18 L-16 -20Z" fill="#ffe9a8" stroke="#ffe9a8" stroke-width="16" stroke-linejoin="round" filter="url(#loader-blur)" opacity=".8"/>
+        <path d="M0 -62 L16 -20 L60 -18 L26 10 L37 54 L0 30 L-37 54 L-26 10 L-60 -18 L-16 -20Z" fill="url(#loader-starFill)" stroke="#ffe9a8" stroke-width="8" stroke-linejoin="round"/>
+        <circle r="22" fill="url(#loader-coreFill)"/>
+      </g>
+      <g id="loader-sparks"></g>
+    </svg>
+    <p class="loader-msg"><span id="loader-text">{{ index $msgs 0 | default "Loading" }}</span><span class="loader-dots"></span></p>
+  </div>
+  <button class="loader-skip" id="loader-skip" type="button">Skip intro</button>
+</div>
