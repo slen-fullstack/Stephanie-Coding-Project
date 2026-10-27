@@ -1,5 +1,5 @@
 // Constellation intro: stars for each role appear in order, get joined by
-// glowing lines, then the constellation floats away to reveal the page.
+// glowing lines, then a sunrise sweeps up and washes the night away.
 (function () {
   var root = document.documentElement;
   var intro = document.getElementById("cintro");
@@ -72,15 +72,35 @@
 
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
 
+  // ── sunrise: dawn rises from the bottom and reveals the page ──
+  var sun = document.getElementById("cintro-sun"), sunRaf;
+  function setP(p, g) {
+    intro.style.setProperty("--p", p.toFixed(4));
+    if (sun) { sun.style.setProperty("--p", p.toFixed(4)); sun.style.setProperty("--glow", g.toFixed(3)); }
+  }
+  function sunrise() {
+    intro.classList.add("leave");
+    var t0 = performance.now(), DUR = 1900;
+    (function step(now) {
+      var k = Math.min((now - t0) / DUR, 1);
+      var p = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; // ease in-out
+      var g = k < 0.12 ? k / 0.12 : k > 0.8 ? (1 - k) / 0.2 : 1;      // fade the glow in and out
+      setP(p, g);
+      if (k < 1) sunRaf = requestAnimationFrame(step); else finish();
+    })(t0);
+  }
+
   function finish() {
     if (finished) return;
     finished = true;
     timers.forEach(clearTimeout);
+    cancelAnimationFrame(sunRaf);
+    setP(1, 0);
     intro.classList.add("done");
     root.classList.remove("intro");
     root.classList.add("intro-seen");
     document.dispatchEvent(new Event("intro:done"));
-    setTimeout(function () { cancelAnimationFrame(raf); intro.remove(); }, 900);
+    setTimeout(function () { cancelAnimationFrame(raf); intro.remove(); if (sun) sun.remove(); }, 300);
   }
 
   // ── timeline ──
@@ -93,8 +113,7 @@
   });
   var end = 300 + n * STEP + 250;
   later(function () { title.classList.add("on"); }, end);
-  later(function () { intro.classList.add("leave"); }, end + 1300);
-  later(finish, end + 2200);
+  later(sunrise, end + 1300);
 
   document.getElementById("cintro-skip").addEventListener("click", finish);
   drawSky();
