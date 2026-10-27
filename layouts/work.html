@@ -21,7 +21,7 @@
       <path d="M0 0h1440v46c-40 14-90 18-120 4-40 22-100 20-130-2-40 20-100 18-130-6-40 20-100 22-140-2-40 22-110 20-140-4-40 18-100 16-130-4-40 20-100 22-140-2-40 18-100 18-130-6-40 16-80 14-110 0L0 40z" fill="#222a66"/>
     </svg>
     <nav class="topnav" aria-label="Sections">
-      <a href="{{ "/" | relURL }}">← Home</a>
+      <a href="{{ site.Home.RelPermalink }}">← Home</a>
       <a href="#experience">Experience</a>
       <a href="#certificate">Certificate</a>
       <a href="#education">Education</a>
@@ -172,7 +172,7 @@
       <div class="buttons">
         {{ with site.Params.email }}<a class="btn" href="mailto:{{ . }}">Email me</a>{{ end }}
         <a class="btn ghost" href="https://www.linkedin.com/in/stephanieslen/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn ghost" href="{{ "/" | relURL }}">Back home</a>
+        <a class="btn ghost" href="{{ site.Home.RelPermalink }}">Back home</a>
       </div>
       <p class="copy">&copy; {{ now.Year }} {{ site.Title }}</p>
     </div>
