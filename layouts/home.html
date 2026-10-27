@@ -4,9 +4,18 @@
 <html lang="{{ site.Language.Locale }}">
 <head>
   <script>
-    // Play the supernova intro on every page load (skipped for reduced motion).
+    // Play the supernova intro on a fresh visit or a refresh, but not when
+    // coming back from another page of this site (skipped for reduced motion).
     (function (r) {
-      if (matchMedia("(prefers-reduced-motion: reduce)").matches) r.add("intro-seen"); else r.add("intro");
+      var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+      var type = nav ? nav.type : "navigate";
+      var fromSite = false;
+      try {
+        var ref = new URL(document.referrer);
+        fromSite = ref.origin === location.origin && ref.pathname.indexOf("{{ site.Home.RelPermalink }}") === 0;
+      } catch (e) {}
+      var skip = matchMedia("(prefers-reduced-motion: reduce)").matches || type === "back_forward" || (type !== "reload" && fromSite);
+      r.add(skip ? "intro-seen" : "intro");
     })(document.documentElement.classList);
   </script>
   {{ partial "head.html" . }}
