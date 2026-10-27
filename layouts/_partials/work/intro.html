@@ -1,0 +1,9 @@
+{{- /* Constellation intro. Stars come from data/work.yaml → intro.stars. */ -}}
+{{- with .intro }}{{ with .stars }}
+<div id="cintro" aria-hidden="true" data-stars="{{ . | jsonify }}">
+  <canvas id="cintro-sky"></canvas>
+  <div class="cintro-map" id="cintro-map"><svg class="cintro-lines" id="cintro-lines"></svg></div>
+  <p class="cintro-title" id="cintro-title"><small>{{ $.intro.kicker }}</small><strong>{{ $.intro.title }}</strong></p>
+  <button class="cintro-skip" id="cintro-skip" type="button" aria-hidden="false">Skip intro</button>
+</div>
+{{ end }}{{ end -}}

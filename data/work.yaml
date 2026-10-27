@@ -5,6 +5,21 @@
 #  little thumbnails you can click.
 # ─────────────────────────────────────────────────────────────
 
+# The constellation intro that plays when the page opens.
+# Stars appear in this order and get joined by lines.
+intro:
+  kicker: "Stephanie Slen"
+  title: "A constellation of work"
+  stars:
+    - { role: "Youth Leader", where: "Writers' Exchange · 2020" }
+    - { role: "Board Director", where: "Britannia · 2022" }
+    - { role: "Founder", where: "The People's Voice · 2023" }
+    - { role: "Gala Envoy", where: "Fresh Roots · 2023" }
+    - { role: "Site Support Worker", where: "Pacific Community Resources · 2024" }
+    - { role: "Debate Instructor", where: "UBC Recreation · 2024" }
+    - { role: "Program Facilitator", where: "Writers' Exchange · 2026" }
+    - { role: "Project Manager", where: "Trout Lake · 2026" }
+
 hero:
   kicker: "Stephanie Slen's Bulletin Board"
   title: "Work Portfolio"

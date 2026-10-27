@@ -193,6 +193,19 @@ content:
     path: data/work.yaml
     format: yaml
     fields:
+      - name: intro
+        label: Constellation intro
+        type: object
+        fields:
+          - { name: kicker, label: Small line, type: string }
+          - { name: title, label: Title, type: string }
+          - name: stars
+            label: Stars (in order)
+            type: object
+            list: { max: 10, collapsible: { collapsed: true, summary: "{role}" } }
+            fields:
+              - { name: role, label: Role, type: string }
+              - { name: where, label: "Where · year", type: string }
       - name: hero
         label: Top of the page
         type: object
