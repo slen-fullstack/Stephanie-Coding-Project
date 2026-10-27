@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telescope Intro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --sky-top: #10153f; --sky-mid: #1b2563; --ink: #f4f1ff; --muted: #c3c6ec; --yellow: #ffc94a; --teal: #5fe3c0; }
+  html, body { margin: 0; height: 100%; background: var(--sky-top); overflow: hidden; font-family: "Fredoka", system-ui, sans-serif; }
+  #site { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* ── telescope intro ── */
+  #scope { position: fixed; inset: 0; z-index: 10; --x: 50vw; --y: 50vh; --r: 0px; transition: opacity .7s ease, visibility .7s; }
+  #scope.done { opacity: 0; visibility: hidden; }
+
+  /* what you see through the lens */
+  .scene { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, #27387f 0%, var(--sky-mid) 45%, var(--sky-top) 100%); }
+  #scope-stars { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .stat { position: absolute; left: var(--sx); top: var(--sy); translate: -50% -50%; text-align: center; color: var(--ink); opacity: .12; transform: scale(.85); transition: opacity .5s ease, transform .6s cubic-bezier(.3, 1.6, .5, 1), filter .5s; }
+  .stat.lit { opacity: 1; transform: scale(1); }
+  .stat-num { display: block; font-weight: 700; font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1; color: #fff3c4; text-shadow: 0 0 22px rgba(255, 216, 107, .9), 0 0 60px rgba(255, 170, 60, .5); }
+  .stat-label { display: block; margin-top: .4rem; font-weight: 500; font-size: clamp(.9rem, 2vw, 1.1rem); color: var(--muted); letter-spacing: .02em; }
+  .stat::before { content: ""; position: absolute; left: 50%; top: 50%; width: 180px; height: 180px; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 216, 107, .25), transparent 70%); opacity: 0; transition: opacity .6s; z-index: -1; }
+  .stat.lit::before { opacity: 1; }
+
+  /* the dark around the lens */
+  .dark {
+    position: absolute; inset: 0; background: #060820;
+    -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y), transparent 97%, #000 100%);
+            mask-image: radial-gradient(circle var(--r) at var(--x) var(--y), transparent 97%, #000 100%);
+  }
+  /* lens rim, crosshair and glass glare */
+  .lens { position: absolute; left: var(--x); top: var(--y); width: calc(var(--r) * 2); height: calc(var(--r) * 2); translate: -50% -50%; border-radius: 50%; pointer-events: none;
+    box-shadow: inset 0 0 0 3px rgba(255, 233, 168, .55), inset 0 0 40px 10px rgba(6, 8, 32, .85), 0 0 0 10px rgba(30, 38, 90, .9), 0 0 0 12px rgba(255, 233, 168, .25), 0 0 40px rgba(255, 216, 107, .25); }
+  .lens::before, .lens::after { content: ""; position: absolute; left: 50%; top: 50%; background: rgba(255, 233, 168, .22); translate: -50% -50%; }
+  .lens::before { width: 1px; height: 70%; }
+  .lens::after { width: 70%; height: 1px; }
+  .glare { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, .14), transparent 35%); }
+  #scope.wide .lens { opacity: 0; transition: opacity .5s; }
+
+  .caption { position: absolute; left: 0; right: 0; bottom: 9vh; text-align: center; color: var(--muted); font-size: 1.05rem; letter-spacing: .04em; transition: opacity .4s; }
+  .caption b { color: var(--yellow); font-weight: 600; }
+  #scope.wide .caption { opacity: 0; }
+  .skip { position: absolute; right: 16px; bottom: 16px; padding: .45rem .9rem; border: 1px solid rgba(255, 255, 255, .25); border-radius: 999px; background: transparent; color: var(--muted); font: 500 .85rem "Fredoka", sans-serif; cursor: pointer; opacity: .75; }
+  .skip:hover { opacity: 1; color: var(--ink); }
+
+  /* preview-only controls */
+  .controls { position: fixed; z-index: 20; right: 16px; top: 16px; }
+  .controls button { font: 600 14px/1 "Fredoka", sans-serif; padding: 10px 16px; border: 0; border-radius: 8px; background: var(--yellow); color: #141a4a; cursor: pointer; box-shadow: 0 3px 0 #f2a91f; }
+  .tag { position: fixed; z-index: 20; left: 16px; top: 16px; color: var(--muted); font-size: 13px; background: rgba(16, 21, 63, .85); padding: 6px 10px; border-radius: 6px; }
+</style>
+</head>
+<body>
+  <iframe id="site" src="https://slen-fullstack.github.io/Stephanie-Coding-Project/work/" title="Work Portfolio"></iframe>
+
+  <div id="scope" role="presentation">
+    <div class="scene">
+      <canvas id="scope-stars" aria-hidden="true"></canvas>
+      <div class="stat" data-pos="25,36|50,24"><span class="stat-num">$2.4M+</span><span class="stat-label">in scholarships secured for students</span></div>
+      <div class="stat" data-pos="74,32|50,50"><span class="stat-num">250+</span><span class="stat-label">children taught at day camp</span></div>
+      <div class="stat" data-pos="48,72|50,76"><span class="stat-num">$20K+</span><span class="stat-label">raised for Fresh Roots</span></div>
+    </div>
+    <div class="dark"></div>
+    <div class="lens"><span class="glare"></span></div>
+    <p class="caption">Looking through <b>Stephanie's</b> work…</p>
+    <button class="skip" id="skip" type="button">Skip intro</button>
+  </div>
+
+  <span class="tag">Template preview: not on your site yet</span>
+  <div class="controls"><button id="replay" type="button">Replay</button></div>
+
+<script>
+(function () {
+  var scope = document.getElementById("scope");
+  var stats = Array.prototype.slice.call(document.querySelectorAll(".stat"));
+  var canvas = document.getElementById("scope-stars");
+  var ctx = canvas.getContext("2d");
+  var dots = [], raf, t0, path;
+
+  function mobile() { return innerWidth < 700; }
+
+  // place the three stats (different layout on phones)
+  function placeStats() {
+    stats.forEach(function (s) {
+      var p = s.dataset.pos.split("|")[mobile() ? 1 : 0].split(",");
+      s.style.setProperty("--sx", p[0] + "vw");
+      s.style.setProperty("--sy", p[1] + "vh");
+      s._x = innerWidth * p[0] / 100; s._y = innerHeight * p[1] / 100;
+    });
+  }
+
+  function sizeCanvas() {
+    var dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = innerWidth * dpr; canvas.height = innerHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    dots = [];
+    var n = Math.round(innerWidth * innerHeight / 3500);
+    for (var i = 0; i < n; i++) dots.push({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, r: Math.random() * 1.5 + .3, p: Math.random() * 6.3, s: Math.random() * .03 + .01 });
+  }
+
+  // the lens route: [x, y, radius, ms to get there, ms to hold]
+  function buildPath() {
+    var R = mobile() ? 120 : 180;
+    var diag = Math.hypot(innerWidth, innerHeight);
+    var pts = [[innerWidth * .12, innerHeight * .85, 0, 0, 0], [innerWidth * .12, innerHeight * .85, R, 450, 100]];
+    stats.forEach(function (s) { pts.push([s._x, s._y, R, 750, 520]); });
+    pts.push([innerWidth / 2, innerHeight / 2, R, 600, 120]);
+    pts.push([innerWidth / 2, innerHeight / 2, diag * .62, 900, 0]);
+    return pts;
+  }
+
+  function ease(k) { return k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2; }
+
+  function frame(now) {
+    var t = now - t0, x, y, r, acc = 0, done = true;
+    for (var i = 1; i < path.length; i++) {
+      var a = path[i - 1], b = path[i];
+      if (t < acc + b[3]) { var k = ease((t - acc) / b[3]); x = a[0] + (b[0] - a[0]) * k; y = a[1] + (b[1] - a[1]) * k; r = a[2] + (b[2] - a[2]) * k; done = false; break; }
+      acc += b[3];
+      if (t < acc + b[4]) { x = b[0]; y = b[1]; r = b[2]; done = false; break; }
+      acc += b[4];
+    }
+    if (done) { var last = path[path.length - 1]; x = last[0]; y = last[1]; r = last[2]; }
+    scope.style.setProperty("--x", x + "px");
+    scope.style.setProperty("--y", y + "px");
+    scope.style.setProperty("--r", r + "px");
+    if (r > path[2][2] * 1.3) scope.classList.add("wide");
+
+    // a stat lights up once the lens finds it, and stays lit
+    stats.forEach(function (s) { if (Math.hypot(s._x - x, s._y - y) < r * .45) s.classList.add("lit"); });
+
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    dots.forEach(function (d) { d.p += d.s; ctx.globalAlpha = .35 + .65 * Math.abs(Math.sin(d.p)); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 6.3); ctx.fill(); });
+    ctx.globalAlpha = 1;
+
+    if (done) { finish(); return; }
+    raf = requestAnimationFrame(frame);
+  }
+
+  function finish() {
+    cancelAnimationFrame(raf);
+    scope.classList.add("done");
+  }
+
+  function play() {
+    cancelAnimationFrame(raf);
+    scope.classList.remove("done", "wide");
+    stats.forEach(function (s) { s.classList.remove("lit"); });
+    placeStats(); sizeCanvas(); path = buildPath();
+    t0 = performance.now();
+    raf = requestAnimationFrame(frame);
+  }
+
+  document.getElementById("skip").addEventListener("click", finish);
+  document.getElementById("replay").addEventListener("click", play);
+  addEventListener("resize", function () { if (!scope.classList.contains("done")) { placeStats(); sizeCanvas(); path = buildPath(); } });
+  play();
+})();
+</script>
+</body>
+</html>
