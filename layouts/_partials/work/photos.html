@@ -1,0 +1,16 @@
+{{- /* Photo frame with a big photo and clickable thumbnails. Context: dict "photos" list "label" string */ -}}
+{{- $photos := .photos -}}
+{{- with $photos }}
+<div class="photos" data-gallery>
+  <button class="photo-main" type="button" aria-label="Enlarge photo of {{ $.label }}">
+    <img src="{{ printf "images/work/%s.jpg" (index $photos 0) | relURL }}" alt="{{ $.label }}" loading="lazy">
+  </button>
+  {{ if gt (len $photos) 1 }}
+  <div class="thumbs">
+    {{ range $i, $p := $photos }}
+    <button class="thumb{{ if eq $i 0 }} on{{ end }}" type="button" data-src="{{ printf "images/work/%s.jpg" $p | relURL }}" aria-label="Show photo {{ add $i 1 }}"><img src="{{ printf "images/work/%s.jpg" $p | relURL }}" alt="" loading="lazy"></button>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+{{- end }}

@@ -1,0 +1,193 @@
+# ─────────────────────────────────────────────────────────────
+#  WORK PORTFOLIO PAGE CONTENT
+#  Edit text between the quotes. Photos live in static/images/work/.
+#  The first photo in each list is the big one; the rest become
+#  little thumbnails you can click.
+# ─────────────────────────────────────────────────────────────
+
+hero:
+  kicker: "Stephanie Slen's Bulletin Board"
+  title: "Work Portfolio"
+  intro: "Project management, community programs, youth mentorship and nonprofit leadership across Metro Vancouver."
+
+experience:
+  title: "Experience"
+  items:
+    - org: "Trout Lake Community Centre"
+      place: "Vancouver, BC"
+      roles:
+        - title: "Project Manager"
+          dates: "March – April 2026"
+          points:
+            - "Managed day camp operations end to end, including budgets, schedules, staff, and program delivery, generating $8K in revenue."
+            - "Built risk and safety plans, coordinated field trips and vendor bookings, and managed communication with parents, volunteers, and centre staff."
+            - "Led the camp staff team and ran an end of season retrospective to improve future planning."
+      photos: [trout-lake-1, trout-lake-2, trout-lake-3, trout-lake-4, trout-lake-5, trout-lake-6, trout-lake-7, trout-lake-8, trout-lake-9, trout-lake-10]
+
+    - org: "The People's Voice Article"
+      place: "Vancouver, BC"
+      link: "https://www.thepeoplesvoicearticle.com/"
+      roles:
+        - title: "Founder"
+          dates: "August 2023 – Present"
+          points:
+            - "Built scholarship advisory platform that supported students in securing an estimated $2.4M+ in post-secondary scholarships across Metro Vancouver, leveraging personal achievement of winning 11 scholarships worth $285,000."
+            - "Delivered 1-on-1 coaching to 20+ youth on applications and interview preparation; facilitated workshops at community centres, school clubs, and partner organizations."
+            - "Authored 6 published articles profiling student success stories, growing platform reach and credibility with families and community partners."
+      photos: [peoples-voice-1]
+
+    - org: "Fresh Roots Urban Farm"
+      roles:
+        - title: "Gala Envoy"
+          dates: "September 2023 – October 2025 (Part Time)"
+          points:
+            - "Raised $20,000+ representing the organization at Canada's Great Kitchen Party Gala (2023, 2025), engaging donors and corporate sponsors."
+        - title: "Market Assistant"
+          dates: "June 2023 – September 2023 (Full Time Contract)"
+          points:
+            - "Drove $10K+ in organic produce sales and 10,000+ lbs harvested across two farm sites; served 100+ families through CSA boxes and led market operations across 3 municipalities."
+            - "Mentored 40+ youth in sustainable agriculture and community service, delegating tasks and business end to end."
+        - title: "Day Camp Instructor"
+          dates: "April 2025 – October 2025 (Full Time Contract)"
+          points:
+            - "Designed and delivered a hands-on urban agriculture curriculum for 250+ children ages 4 to 12."
+            - "Facilitated day camp programs for experiential learning in sustainable food systems, environmental stewardship, and community building."
+        - title: "SOYL Program Mentor"
+          dates: "July 2019 – June 2023 (Volunteer)"
+          points:
+            - "Mentored cohorts of high school youth through the (SOYL) sustainability program over four consecutive years over the summer."
+            - "Guided participants through leadership development, environmental education, and community engagement programs."
+      photos: [fresh-roots-1, fresh-roots-2, fresh-roots-3, fresh-roots-4, fresh-roots-5, fresh-roots-6, fresh-roots-7, fresh-roots-8, fresh-roots-9, fresh-roots-10, fresh-roots-11, fresh-roots-12, fresh-roots-13, fresh-roots-14, fresh-roots-15, fresh-roots-16, fresh-roots-17, fresh-roots-18, fresh-roots-19]
+
+    - org: "University of British Columbia Recreation"
+      roles:
+        - title: "Debate Camp Instructor"
+          dates: "June – August 2024 (Full Time Contract)"
+          points:
+            - "Develop and deliver structured debate curriculum, teaching argumentation, rhetoric, and public speaking skills to student participants."
+            - "Facilitate practice rounds, mock debates, and workshops to build critical thinking and persuasive communication abilities."
+            - "Provide individualized feedback and coaching to help students refine research, delivery, and rebuttal techniques."
+      photos: [ubc-debate-1, ubc-debate-2]
+
+    - org: "Pacific Community Resources Society"
+      roles:
+        - title: "Program Site Support Worker"
+          dates: "January 2024 – Present (Part Time)"
+          points:
+            - "Support running afterschool programs for youth through Pathways to Education at Pacific Community Resources Society, one of BC's largest social service non-profits ($41.3M annual revenue)."
+            - "Responsibilities include setting up, relationship building with students, connecting the right resources and tutoring support, providing food security snacks and a safe space."
+      photos: [pcrs-1]
+
+    - org: "Britannia Community Centre"
+      place: "Vancouver, BC"
+      roles:
+        - title: "Board Director"
+          dates: "July 2022 – August 2023"
+          points:
+            - "Elected 1 of 12 board members overseeing $7M annual operating budget and a $25M facility renewal project spanning pools, rinks, library, and childcare programs."
+            - "Collaborated with City of Vancouver, Vancouver Park Board, and Vancouver School Board on multi-stakeholder governance decisions."
+      photos: [britannia-board-1, britannia-board-2]
+
+    - org: "The Writers' Exchange"
+      roles:
+        - title: "Program Facilitator"
+          dates: "February 2026 – September 2026 (Part Time)"
+          points:
+            - "Registered Vancouver charity serving 350+ under-resourced children and youth annually."
+            - "Design, coordinate, and deliver literacy programs end-to-end, from setup through execution."
+            - "Cultivate and maintain relationships with donors and community stakeholders to support organizational partnerships."
+            - "Support the planning and execution of charity fundraising events."
+        - title: "Youth Leader"
+          dates: "August 2020 – 2023 (Part Time)"
+          points:
+            - "Led creative writing workshops and mentorship programs for thousands of children across five years."
+            - "Published seven stories in Writers' Exchange storybooks."
+            - "Facilitated peer support and skill-building in literacy, storytelling, and communication."
+            - "Developed teaching approach centered on making reading accessible and engaging for young learners and special needs children."
+      photos: [writers-exchange-1, writers-exchange-2, writers-exchange-3, writers-exchange-4, writers-exchange-5, writers-exchange-6, writers-exchange-7, writers-exchange-8, writers-exchange-9]
+
+certificate:
+  label: "Related experience"
+  title: "Google Project Management: Professional Certificate"
+  issued: "Issued Sep 2026 · Credential ID 6KTXH3MCCOFH"
+  image: google-cert-1
+  skills:
+    - "Project & Program Management"
+    - "Agile & Waterfall"
+    - "Lean & Six Sigma"
+    - "Budget Oversight & Reporting"
+    - "Stakeholder & Cross-Functional Engagement"
+    - "Scheduling & Resource Planning"
+    - "Process Improvement"
+
+education:
+  title: "Education"
+  items:
+    - school: "Simon Fraser University"
+      degree: "Bachelor of Arts, International Studies (Concentration: Global Peace, Security, and Governance)"
+      dates: "September 2023 – Expected June 2028"
+      notes:
+        - "Awards: Uggla Family Scholarship (Full Ride)"
+        - "Activities: Delegate, SFU Model United Nations (October 2026 – Present)"
+    - school: "Britannia Secondary School"
+      dates: "September 2019 – June 2023"
+      notes:
+        - "Student Council President (Grade 12)"
+        - "International Baccalaureate (Grade 11)"
+        - "Venture Mini School, Accelerated Academics (Grades 8 to 10)"
+
+volunteering:
+  title: "Volunteering"
+  items:
+    - title: "Volunteer, Free Meal Program"
+      org: "Simon Fraser University Student Society"
+      dates: "September 2026 – Present"
+      points:
+        - "Once a week volunteering with Simon Fraser University Student Society Free Meal Program."
+        - "Handing out 200+ hot dogs and pancakes a week."
+      photos: [sfss-meals-1]
+    - title: "Student Council President"
+      org: "Britannia Secondary School"
+      dates: "June 2022 – June 2023"
+      points:
+        - "Lead and coordinate student council initiatives, representing the student body's interests to school administration and staff."
+        - "Plan, organize, and oversee school-wide events, campaigns, and fundraisers."
+        - "Chair council meetings, setting agendas and facilitating discussion among elected representatives."
+        - "Manage budgets and allocate resources for student council programs and activities."
+      photos: [student-council-1, student-council-2, student-council-3, student-council-4, student-council-5, student-council-6, student-council-7, student-council-8, student-council-9]
+    - title: "Co-Founder"
+      org: "Nurtured Youth Community"
+      dates: "August 2022 – October 2025"
+      points:
+        - "Co-founded nonprofit organization bridging accessibility gaps between youth in unsupported households and mental health resources."
+        - "Coordinated free therapy sessions led by industry experts, making mental health support accessible to minors across Canada."
+        - "Secured $5,000 OXY Canada grant within six months of founding."
+        - "Featured in CBC News for innovative approach to youth mental health during COVID-19."
+      photos: [nurtured-youth-1, nurtured-youth-2, nurtured-youth-3]
+    - title: "Sustainability Coordinator"
+      org: "Strathcona Rotary Interact Club"
+      dates: "September 2021 – August 2023"
+      points:
+        - "Organized community sustainable service projects including beach cleanups, clothing swaps, and \"adopt a plant\" initiatives."
+        - "Led gardening and cooking programs for youth focused on urban agriculture."
+        - "Received \"Pushing the Limits Award\" for commitment to service and team leadership."
+      photos: [interact-1, interact-2, interact-3, interact-4, interact-5, interact-6, interact-7, interact-8, interact-9, interact-10, interact-11]
+    - title: "Volunteer, Youth to Sea Program"
+      org: "Ocean Wise Canada"
+      dates: "June 2021 – March 2022"
+      photos: [youth-to-sea-1, youth-to-sea-2, youth-to-sea-3, youth-to-sea-4, youth-to-sea-5, youth-to-sea-6, youth-to-sea-7, youth-to-sea-8, youth-to-sea-9]
+    - title: "President, Beyond the Plate Club"
+      dates: "September 2019 – June 2023"
+      photos: [beyond-the-plate-1, beyond-the-plate-2, beyond-the-plate-3]
+    - title: "Volunteer"
+      org: "Environmental Youth Alliance"
+      dates: "September 2020 – May 2023"
+      photos: [eya-1, eya-2, eya-3]
+    - title: "Youth Head Delegate"
+      org: "Vancouver School Board Sustainability Conference"
+      dates: "September 2019 – January 2020"
+      photos: [vsb-delegate-1, vsb-delegate-2, vsb-delegate-3, vsb-delegate-4, vsb-delegate-5]
+
+gallery:
+  title: "Snapshots"
+  intro: "Moments from the work, the wins and the people along the way."

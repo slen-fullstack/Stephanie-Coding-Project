@@ -4,7 +4,7 @@ name: Deploy site to GitHub Pages
 
 on:
   push:
-    branches: [claude/hugo-static-website-j6tfda, claude/bold-ritchie-olo21h, main]
+    branches: [claude/hugo-static-website-j6tfda, main]
   workflow_dispatch:
 
 permissions:

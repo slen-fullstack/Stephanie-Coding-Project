@@ -1,0 +1,194 @@
+{{- /* Work Portfolio page. All the words and photos come from data/work.yaml. */ -}}
+{{- $d := hugo.Data.work -}}
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+  {{ partial "head.html" . }}
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  {{ range slice "css/home.css" "css/work.css" }}
+  {{ with resources.Get . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{ end }}
+  {{ end }}
+</head>
+<body class="night work-page">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  {{ partial "home/sprites.html" . }}
+
+  <header class="topbar">
+    <svg class="topbar-clouds" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 0h1440v70c-40 18-80 30-130 20-30 30-90 34-130 10-40 28-110 26-140-6-40 26-110 22-140-10-50 30-120 28-150-6-40 22-100 24-130-4-40 30-110 30-150 0-30 20-90 26-130 4-40 26-100 24-130-4-30 18-70 22-110 8L0 76z" fill="#2b3477"/>
+      <path d="M0 0h1440v46c-40 14-90 18-120 4-40 22-100 20-130-2-40 20-100 18-130-6-40 20-100 22-140-2-40 22-110 20-140-4-40 18-100 16-130-4-40 20-100 22-140-2-40 18-100 18-130-6-40 16-80 14-110 0L0 40z" fill="#222a66"/>
+    </svg>
+    <nav class="topnav" aria-label="Sections">
+      <a href="{{ "/" | relURL }}">← Home</a>
+      <a href="#experience">Experience</a>
+      <a href="#certificate">Certificate</a>
+      <a href="#education">Education</a>
+      <a href="#volunteering">Volunteering</a>
+      <a href="#snapshots">Snapshots</a>
+    </nav>
+  </header>
+
+  <div class="sparkles" aria-hidden="true">
+    {{ range $i, $s := slice
+      (dict "x" "5%" "y" "3%" "c" "teal" "s" 44) (dict "x" "93%" "y" "6%" "c" "orange" "s" 32)
+      (dict "x" "3%" "y" "14%" "c" "yellow" "s" 28) (dict "x" "90%" "y" "21%" "c" "teal" "s" 36)
+      (dict "x" "6%" "y" "30%" "c" "orange" "s" 34) (dict "x" "95%" "y" "38%" "c" "yellow" "s" 30)
+      (dict "x" "2%" "y" "47%" "c" "teal" "s" 40) (dict "x" "92%" "y" "55%" "c" "orange" "s" 30)
+      (dict "x" "5%" "y" "64%" "c" "yellow" "s" 32) (dict "x" "94%" "y" "72%" "c" "teal" "s" 34)
+      (dict "x" "4%" "y" "81%" "c" "orange" "s" 30) (dict "x" "91%" "y" "90%" "c" "yellow" "s" 28)
+    }}
+    <svg class="sparkle {{ $s.c }}" style="left:{{ $s.x | safeCSS }};top:{{ $s.y | safeCSS }};width:{{ $s.s }}px;height:{{ $s.s }}px;--d:{{ mul $i 0.37 }}s"><use href="#sparkle"/></svg>
+    {{ end }}
+  </div>
+
+  <main>
+    {{/* ───────── HERO ───────── */}}
+    {{ with $d.hero }}
+    <section class="work-hero wrap">
+      <p class="kicker">{{ .kicker }}</p>
+      <h1 class="hero-name">
+        {{- range $i, $w := split .title " " }}<span class="word">{{ range $j, $ch := split $w "" }}<span class="ch" style="--i:{{ add (mul $i 8) $j }}">{{ $ch }}</span>{{ end }}</span> {{ end -}}
+      </h1>
+      <p class="tagline">{{ .intro }}</p>
+      <svg class="constellation" viewBox="0 0 600 120" aria-hidden="true">
+        <path d="M20 90 L120 40 L230 70 L330 20 L440 60 L580 30" />
+        {{ range slice (slice 20 90) (slice 120 40) (slice 230 70) (slice 330 20) (slice 440 60) (slice 580 30) }}
+        <circle cx="{{ index . 0 }}" cy="{{ index . 1 }}" r="5"/>
+        {{ end }}
+      </svg>
+    </section>
+    {{ end }}
+
+    {{/* ───────── EXPERIENCE TIMELINE ───────── */}}
+    {{ with $d.experience }}
+    <section id="experience" class="wrap">
+      <h2 class="reveal">{{ .title }}</h2>
+      <ol class="timeline">
+        {{ range $i, $job := .items }}
+        <li class="job reveal{{ if modBool $i 2 }}{{ else }} flip{{ end }}">
+          <span class="node" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
+          {{ partial "work/photos.html" (dict "photos" $job.photos "label" $job.org) }}
+          <article class="card">
+            <h3>{{ with $job.link }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $job.org }}</a>{{ else }}{{ $job.org }}{{ end }}</h3>
+            {{ with $job.place }}<p class="place">{{ . }}</p>{{ end }}
+            {{ range $job.roles }}
+            <div class="role">
+              <p class="role-title">{{ .title }}</p>
+              <p class="dates">{{ .dates }}</p>
+              {{ with .points }}<ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+            </div>
+            {{ end }}
+          </article>
+        </li>
+        {{ end }}
+      </ol>
+    </section>
+    {{ end }}
+
+    {{/* ───────── CERTIFICATE ───────── */}}
+    {{ with $d.certificate }}
+    <section id="certificate" class="wrap cert">
+      <div class="reveal">
+        <p class="kicker">{{ .label }}</p>
+        <h2>{{ .title }}</h2>
+        <p class="muted">{{ .issued }}</p>
+        <ul class="skills">
+          {{ range $i, $s := .skills }}<li style="--d:{{ mul $i 0.4 }}s"><svg aria-hidden="true"><use href="#sparkle"/></svg>{{ $s }}</li>{{ end }}
+        </ul>
+      </div>
+      {{ with .image }}
+      <button class="wood cert-frame reveal" type="button" data-zoom="{{ printf "images/work/%s.jpg" . | relURL }}" aria-label="Enlarge certificate">
+        <span class="canvas"><img src="{{ printf "images/work/%s.jpg" . | relURL }}" alt="Google Project Management certificate" loading="lazy"></span>
+      </button>
+      {{ end }}
+    </section>
+    {{ end }}
+
+    {{/* ───────── EDUCATION ───────── */}}
+    {{ with $d.education }}
+    <section id="education" class="wrap">
+      <h2 class="reveal">{{ .title }}</h2>
+      <div class="edu">
+        {{ range $i, $e := .items }}
+        <article class="edu-card reveal" style="--d:{{ mul $i 0.6 }}s">
+          <svg class="edu-moon" viewBox="0 0 100 100" aria-hidden="true"><defs><mask id="edu-m{{ $i }}"><rect width="100" height="100" fill="#fff"/><circle cx="66" cy="38" r="38" fill="#000"/></mask></defs><circle cx="50" cy="50" r="42" fill="#ffd86b" mask="url(#edu-m{{ $i }})"/></svg>
+          <h3>{{ $e.school }}</h3>
+          {{ with $e.degree }}<p class="role-title">{{ . }}</p>{{ end }}
+          <p class="dates">{{ $e.dates }}</p>
+          {{ with $e.notes }}<ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+        </article>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+
+    {{/* ───────── VOLUNTEERING ───────── */}}
+    {{ with $d.volunteering }}
+    <section id="volunteering" class="wrap">
+      <h2 class="reveal">{{ .title }}</h2>
+      <div class="vol-grid">
+        {{ range $i, $v := .items }}
+        <article class="vol reveal" style="--d:{{ mul (mod $i 2) 0.2 }}s">
+          {{ partial "work/photos.html" (dict "photos" $v.photos "label" $v.title) }}
+          <div class="vol-body">
+            <h3>{{ $v.title }}</h3>
+            {{ with $v.org }}<p class="place">{{ . }}</p>{{ end }}
+            <p class="dates">{{ $v.dates }}</p>
+            {{ with $v.points }}<ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+          </div>
+        </article>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+
+    {{/* ───────── SNAPSHOTS ───────── */}}
+    {{ with $d.gallery }}
+    <section id="snapshots" class="wrap">
+      <h2 class="reveal center">{{ .title }}</h2>
+      <p class="muted center reveal">{{ .intro }}</p>
+      <div class="masonry">
+        {{ range $i, $f := readDir "static/images/work" }}
+        {{ if hasPrefix $f.Name "gallery-" }}
+        <button class="snap reveal" type="button" data-zoom="{{ printf "images/work/%s" $f.Name | relURL }}" aria-label="Enlarge photo">
+          <img src="{{ printf "images/work/%s" $f.Name | relURL }}" alt="" loading="lazy">
+        </button>
+        {{ end }}
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+  </main>
+
+  <footer class="hills">
+    <svg class="hill-layers" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 140 C 200 60 420 60 640 120 S 1100 40 1440 110 V260 H0z" fill="#26346f"/>
+      <path d="M0 190 C 260 120 480 150 720 180 S 1160 120 1440 170 V260 H0z" fill="#1c2759"/>
+    </svg>
+    <div class="footer-body wrap">
+      <h2>Let's work together</h2>
+      <div class="buttons">
+        {{ with site.Params.email }}<a class="btn" href="mailto:{{ . }}">Email me</a>{{ end }}
+        <a class="btn ghost" href="https://www.linkedin.com/in/stephanieslen/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="{{ "/" | relURL }}">Back home</a>
+      </div>
+      <p class="copy">&copy; {{ now.Year }} {{ site.Title }}</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" type="button" aria-label="Close">×</button>
+    <button class="lb-prev" type="button" aria-label="Previous photo">‹</button>
+    <img alt="">
+    <button class="lb-next" type="button" aria-label="Next photo">›</button>
+  </div>
+
+  {{ range slice "js/home.js" "js/work.js" }}
+  {{ with resources.Get . | minify | fingerprint }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+  {{ end }}
+  {{ end }}
+</body>
+</html>
