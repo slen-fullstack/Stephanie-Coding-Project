@@ -287,6 +287,10 @@
   </footer>
   {{ end }}
 
+  {{ partial "home/music.html" $d }}
+  {{ with resources.Get "js/music.js" | minify | fingerprint }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+  {{ end }}
   {{ with resources.Get "js/loader.js" | minify | fingerprint }}
   <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
   {{ end }}
