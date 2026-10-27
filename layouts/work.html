@@ -76,7 +76,7 @@
         {{ range $i, $job := .items }}
         <li class="job reveal{{ if modBool $i 2 }}{{ else }} flip{{ end }}">
           <span class="node" aria-hidden="true"><svg><use href="#sparkle"/></svg></span>
-          {{ partial "work/photos.html" (dict "photos" $job.photos "label" $job.org) }}
+          {{ partial "work/photos.html" (dict "photos" $job.photos "label" $job.org "full" $job.photo_full) }}
           <article class="card">
             <h3>{{ with $job.link }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $job.org }}</a>{{ else }}{{ $job.org }}{{ end }}</h3>
             {{ with $job.place }}<p class="place">{{ . }}</p>{{ end }}

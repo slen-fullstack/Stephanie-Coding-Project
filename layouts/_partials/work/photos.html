@@ -1,7 +1,7 @@
-{{- /* Photo frame with a big photo and clickable thumbnails. Context: dict "photos" list "label" string */ -}}
+{{- /* Photo frame with a big photo and clickable thumbnails. Context: dict "photos" list "label" string "full" bool (show the whole photo, uncropped) */ -}}
 {{- $photos := .photos -}}
 {{- with $photos }}
-<div class="photos" data-gallery>
+<div class="photos{{ if $.full }} full{{ end }}" data-gallery>
   <button class="photo-main" type="button" aria-label="Enlarge photo of {{ $.label }}">
     <img src="{{ printf "images/work/%s.jpg" (index $photos 0) | relURL }}" alt="{{ $.label }}" loading="lazy">
   </button>
