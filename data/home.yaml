@@ -139,6 +139,7 @@ features:
     - title: "Pathways to Education"
       text: "Featured story: \"Stephanie is showing up for others.\""
       url: "https://www.pathwaystoeducation.ca/story/stephanie-is-showing-up-for-others/"
+      embed: true   # shows a live mini preview of the page above
     - title: "The People's Voice Article"
       text: "Articles about students who've overcome challenges and earned scholarships."
       image: "/images/peoples-voice.jpg"

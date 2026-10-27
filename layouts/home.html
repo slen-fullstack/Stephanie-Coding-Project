@@ -238,7 +238,8 @@
         {{ range $i, $f := .items }}
         <a class="wood reveal" href="{{ $f.url }}" target="_blank" rel="noopener" style="--d:{{ mul $i 0.3 }}s">
           <span class="canvas">
-            {{ with $f.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}
+            {{ if $f.embed }}<span class="embed"><iframe src="{{ $f.url }}" title="{{ $f.title }} preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></span>
+            {{ else }}{{ with $f.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}{{ end }}
             <strong>{{ $f.title }}</strong>
             <span>{{ $f.text }}</span>
           </span>
