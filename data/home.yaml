@@ -13,7 +13,7 @@
 hero:
   kicker: "Stephanie Slen's Bulletin Board"
   name: "Stephanie Slen"
-  tagline: "At just 21, Stephanie Slen drives bold initiatives in education, equity, and community power—turning grassroots activism into $1.9M+ in scholarships for youth."
+  tagline: "At just 21, Stephanie Slen drives bold initiatives in education, equity, and community power—turning grassroots activism into $2.4M+ in scholarships for youth."
   buttons:
     - label: "Read my story"
       url: "#about"
@@ -30,7 +30,7 @@ about:
   title: "Welcome to my bulletin board"
   image: "/images/profile.jpg"
   paragraphs:
-    - "At 19, Stephanie earned nine scholarships worth $280,000 and turned that success into a mission to help other students achieve the same. What began as her sharing advice with a few peers has since grown into supporting students in securing full-ride scholarships totaling $2,401,950. Her work has been featured on <em>Global News</em>, <em>CBC News</em>, and in the <em>Vancouver Sun</em> (April 7 issue), and she was nominated as a Metro Vancouver Young Woman of Distinction for her impact."
+    - "At 19, Stephanie earned nine scholarships worth $280,000 and turned that success into a mission to help other students achieve the same. What began as her sharing advice with a few peers has since grown into supporting students in securing full-ride scholarships totaling $2,401,950. Her work has been featured on <em>Global News</em>, <em>CBC News</em>, and in the <em>Vancouver Sun</em> (April 14, 2026 issue), and she was nominated as a Metro Vancouver Young Woman of Distinction for her impact."
     - "Stephanie has always loved storytelling. She published seven stories in the Writers' Exchange storybooks and spent five years there as a teen leader, teaching thousands of children to read. That passion grew into writing articles about students who've overcome challenges and earned scholarships, with her work featured in <em>The People's Voice Article</em>."
   button:
     label: "The People's Voice Article"
