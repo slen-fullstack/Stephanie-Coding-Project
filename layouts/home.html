@@ -93,7 +93,7 @@
       <div class="reveal">
         <h2>{{ .title }}</h2>
         {{ range .paragraphs }}<p>{{ . | safeHTML }}</p>{{ end }}
-        {{ with .button }}<a class="btn" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}
+        {{ with .button }}{{ if .url }}<a class="btn" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}{{ end }}
       </div>
     </section>
     {{ end }}
@@ -118,7 +118,7 @@
               <span class="cloud-title">{{ $h.title }}</span>
               <span class="cloud-text">{{ $h.text }}</span>
               {{ with $h.more }}<span class="cloud-text small">{{ . }}</span>{{ end }}
-              {{ with $h.link }}<a class="cloud-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}
+              {{ with $h.link }}{{ if .url }}<a class="cloud-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}{{ end }}
             </span>
           </span>
         </div>
@@ -194,7 +194,7 @@
               {{ with $e.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}
               <h3>{{ $e.title }}</h3>
               <p>{{ $e.text }}</p>
-              {{ with $e.link }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}
+              {{ with $e.link }}{{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}{{ end }}
             </div>
           </article>
           {{ end }}

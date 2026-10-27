@@ -26,6 +26,9 @@ Add a new project with `hugo new content portfolio/my-project.md`, then set `dra
 
 ## Editing the homepage
 
+**Easiest:** use the visual editor at https://app.pagescms.org (sign in with GitHub, pick this repo, open **Homepage**). It's set up by `.pages.yml`.
+
+Or edit the file directly: 
 Open `data/home.yaml` (on GitHub: click the file, then the pencil icon). Change any text between the quotes, then commit. The site rebuilds and goes live on its own in about a minute.
 
 ## Publishing (GitHub Pages)
