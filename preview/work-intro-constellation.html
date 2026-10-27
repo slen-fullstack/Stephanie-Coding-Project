@@ -24,15 +24,20 @@
   .lines line.on { transition: stroke-dashoffset .45s ease; stroke-dashoffset: 0; }
 
   .node { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
-  .node .dot { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle, #fff 0%, #fff3c4 35%, rgba(255, 201, 74, .6) 60%, transparent 72%); transform: scale(0); }
-  .node .dot::after { content: ""; position: absolute; inset: -14px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 216, 107, .35), transparent 70%); }
+  .node .dot { position: absolute; left: -10px; top: -10px; width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle, #fff 0%, #fff3c4 35%, rgba(255, 201, 74, .6) 60%, transparent 72%); transform: scale(0); }
+  /* yellow-white aura around each star */
+  .node .dot::before, .node .dot::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+  .node .dot::before { inset: -52px; background: radial-gradient(circle, rgba(255, 255, 245, .95) 0%, rgba(255, 244, 190, .7) 14%, rgba(255, 224, 120, .38) 32%, rgba(255, 200, 80, .14) 52%, transparent 70%); animation: aura 2.8s ease-in-out infinite; }
+  .node .dot::after { inset: -16px; background: radial-gradient(circle, #fff 0%, rgba(255, 250, 225, .9) 30%, rgba(255, 236, 160, .45) 55%, transparent 75%); filter: blur(1px); }
+  @keyframes aura { 0%, 100% { transform: scale(.9); opacity: .85; } 50% { transform: scale(1.15); opacity: 1; } }
+  .node:nth-child(odd) .dot::before { animation-delay: -1.4s; }
   .node.on .dot { animation: pop .55s cubic-bezier(.3, 1.8, .5, 1) forwards, twinkle 2.4s ease-in-out .6s infinite; }
   @keyframes pop { to { transform: scale(1); } }
   @keyframes twinkle { 50% { opacity: .65; transform: scale(.85); } }
-  .node .label { position: absolute; white-space: nowrap; text-align: center; translate: -50% 0; left: 0; top: 16px; opacity: 0; transform: translateY(6px); transition: opacity .45s ease, transform .45s ease; }
-  .node.up .label { top: auto; bottom: 16px; transform: translateY(-6px); }
+  .node .label { position: absolute; white-space: nowrap; text-align: center; translate: -50% 0; left: 0; top: 22px; opacity: 0; transform: translateY(6px); transition: opacity .45s ease, transform .45s ease; }
+  .node.up .label { top: auto; bottom: 22px; transform: translateY(-6px); }
   .node.on .label { opacity: 1; transform: none; }
-  .label b { display: block; color: var(--ink); font-weight: 600; font-size: clamp(.85rem, 1.5vw, 1.05rem); }
+  .label b { display: block; color: var(--ink); text-shadow: 0 0 10px rgba(16, 21, 63, .9); font-weight: 600; font-size: clamp(.85rem, 1.5vw, 1.05rem); }
   .label span { display: block; color: var(--teal); font-weight: 500; font-size: clamp(.72rem, 1.2vw, .85rem); }
 
   .title { position: absolute; left: 0; right: 0; bottom: 10vh; text-align: center; color: var(--ink); opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
