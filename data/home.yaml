@@ -1,3 +1,10 @@
+loader:
+  messages:
+    - Gathering stardust
+    - Charging up the stars
+    - Counting the scholarships
+    - Lighting up the sky
+    - Almost there
 hero:
   kicker: Stephanie Slen's Bulletin Board
   name: Stephanie Slen

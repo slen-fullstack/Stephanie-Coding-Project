@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loading Screen Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky-top: #10153f;
+    --sky-mid: #1b2563;
+    --sky-low: #27387f;
+    --glow: #3d55b8;
+    --ink: #f4f1ff;
+    --muted: #c3c6ec;
+    --yellow: #ffc94a;
+  }
+  html, body { margin: 0; height: 100%; background: var(--sky-top); overflow: hidden; font-family: "Fredoka", system-ui, sans-serif; }
+
+  /* The real site sits underneath and is revealed at the end */
+  #site { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  #loader { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; background: var(--sky-top); transition: opacity .9s ease, visibility .9s; }
+  #loader.done { opacity: 0; visibility: hidden; }
+
+  /* expanding blue core */
+  .core {
+    position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%;
+    background: radial-gradient(circle, #6f86e6 0%, var(--glow) 18%, var(--sky-low) 38%, var(--sky-mid) 62%, var(--sky-top) 100%);
+    transform: scale(0); opacity: 0;
+  }
+  #loader.burst .core { animation: core 1.9s cubic-bezier(.6, 0, .2, 1) forwards; }
+  @keyframes core {
+    0% { transform: scale(0); opacity: 0; }
+    15% { opacity: 1; }
+    100% { transform: scale(var(--cover)); opacity: 1; }
+  }
+  /* soft pulsing glow while waiting */
+  .halo { position: absolute; left: 50%; top: 50%; width: 360px; height: 360px; margin: -180px 0 0 -180px; border-radius: 50%; background: radial-gradient(circle, rgba(61, 85, 184, .35), transparent 70%); animation: halo 2.4s ease-in-out infinite; }
+  @keyframes halo { 50% { transform: scale(1.12); opacity: .7; } }
+
+  #warp { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .stage { position: relative; z-index: 2; text-align: center; transition: transform .7s cubic-bezier(.6, -.3, .4, 1), opacity .5s; }
+  #loader.burst .stage { transform: scale(.3); opacity: 0; }
+  #critter { width: min(320px, 70vw); height: auto; overflow: visible; }
+  .msg { margin: .6rem 0 0; color: var(--muted); font-size: 1.05rem; letter-spacing: .02em; min-height: 1.5em; }
+  .msg span { display: inline-block; animation: msgIn .45s ease both; }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(6px); } }
+  .dots::after { content: ""; animation: dots 1.2s steps(4) infinite; }
+  @keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+
+  /* preview-only controls */
+  .controls { position: fixed; z-index: 20; right: 16px; bottom: 16px; display: flex; gap: 8px; }
+  .controls button { font: 600 14px/1 "Fredoka", sans-serif; padding: 10px 16px; border: 0; border-radius: 8px; background: var(--yellow); color: #141a4a; cursor: pointer; box-shadow: 0 3px 0 #f2a91f; }
+  .tag { position: fixed; z-index: 20; left: 16px; bottom: 16px; color: var(--muted); font-size: 13px; background: rgba(16, 21, 63, .8); padding: 6px 10px; border-radius: 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .halo, .dots::after { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <iframe id="site" src="https://slen-fullstack.github.io/Stephanie-Coding-Project/" title="Stephanie Slen website"></iframe>
+
+  <div id="loader" role="status" aria-live="polite">
+    <div class="halo" aria-hidden="true"></div>
+    <div class="core" aria-hidden="true"></div>
+    <canvas id="warp" aria-hidden="true"></canvas>
+    <div class="stage">
+      <svg id="critter" viewBox="-150 -150 300 300" aria-hidden="true">
+        <defs>
+          <radialGradient id="body" cx="38%" cy="32%" r="75%">
+            <stop offset="0" stop-color="#fff38a"/>
+            <stop offset=".45" stop-color="#ffd21f"/>
+            <stop offset="1" stop-color="#f2a600"/>
+          </radialGradient>
+          <radialGradient id="headFill" cx="40%" cy="30%" r="75%">
+            <stop offset="0" stop-color="#fff59a"/>
+            <stop offset=".5" stop-color="#ffd52a"/>
+            <stop offset="1" stop-color="#efa300"/>
+          </radialGradient>
+          <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
+          <!-- one body segment, pointing along +x -->
+          <g id="seg">
+            <ellipse rx="19" ry="25" fill="url(#body)"/>
+            <path d="M-5 -23 C 3 -10, -6 8, 2 23" fill="none" stroke="#ff8a00" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M-11 -15 L -3 -11 M -12 13 L -4 9" fill="none" stroke="#ff8a00" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
+        </defs>
+        <g id="shadow" filter="url(#soft)" opacity=".28" transform="translate(10 14)"></g>
+        <g id="bodyParts"></g>
+      </svg>
+      <p class="msg"><span id="msgText">Chasing down the stars</span><span class="dots"></span></p>
+    </div>
+  </div>
+
+  <span class="tag">Template preview: not on your site yet</span>
+  <div class="controls"><button id="replay" type="button">Replay</button></div>
+
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ── Build the caterpillar ──
+  var SEGMENTS = 20, R = 80, GAP = 0.215; // GAP = radians between segments
+  var parts = document.getElementById("bodyParts");
+  var shadow = document.getElementById("shadow");
+  var segs = [], shadows = [];
+
+  function make(tag, attrs, parent) {
+    var el = document.createElementNS(NS, tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    parent.appendChild(el);
+    return el;
+  }
+
+  // tail tip
+  var tail = make("g", {}, parts);
+  make("ellipse", { rx: 14, ry: 19, fill: "url(#body)" }, tail);
+  make("circle", { cx: -13, r: 6.5, fill: "#ff7a1a" }, tail);
+  segs.push(tail);
+  for (var i = 0; i < SEGMENTS; i++) {
+    var g = make("g", {}, parts);
+    make("use", { href: "#seg" }, g);
+    segs.push(g);
+  }
+  // head
+  var head = make("g", {}, parts);
+  make("circle", { r: 31, fill: "url(#headFill)" }, head);
+  make("path", { d: "M-14 -20 L -6 -12 M -4 -25 L 0 -15 M 8 -24 L 6 -14", stroke: "#ff8a00", "stroke-width": 3, "stroke-linecap": "round", fill: "none" }, head);
+  make("circle", { cx: 9, cy: 15, r: 5, fill: "#ff9ec0", opacity: ".85" }, head);
+  make("circle", { cx: 9, cy: -15, r: 5, fill: "#ff9ec0", opacity: ".85" }, head);
+  [-1, 1].forEach(function (s) {
+    make("circle", { cx: 16, cy: 9 * s, r: 6.5, fill: "#fff" }, head);
+    make("circle", { cx: 18.5, cy: 9 * s, r: 3.6, fill: "#1a1a2e", class: "pupil" }, head);
+    make("circle", { cx: 19.5, cy: 8 * s - 1, r: 1.2, fill: "#fff" }, head);
+    for (var w = 0; w < 2; w++) {
+      make("path", { d: "M24 " + (4 * s) + " Q 40 " + (s * (6 + w * 7)) + " 54 " + (s * (8 + w * 13)), stroke: "#f4f1ff", "stroke-width": 1.6, fill: "none", "stroke-linecap": "round" }, head);
+    }
+  });
+  make("path", { d: "M25 -3 Q 28 0 25 3", stroke: "#c2410c", "stroke-width": 2, fill: "none", "stroke-linecap": "round" }, head);
+  segs.push(head);
+
+  // shadow copies (plain blobs)
+  segs.forEach(function (_, i) {
+    shadows.push(make("circle", { r: i === segs.length - 1 ? 30 : 21, fill: "#000" }, shadow));
+  });
+
+  function drawCritter(t) {
+    var base = t * 2.1; // chase speed
+    var n = segs.length;
+    for (var i = 0; i < n; i++) {
+      var k = n - 1 - i;                       // 0 = head
+      var a = base - k * GAP;
+      var r = R + Math.sin(t * 9 - k * 0.75) * 4; // inching wave
+      var x = Math.cos(a) * r, y = Math.sin(a) * r;
+      var deg = a * 180 / Math.PI + 90;        // face the direction of travel
+      var squash = 1 + Math.sin(t * 9 - k * 0.75) * 0.06;
+      var bob = i === n - 1 ? Math.sin(t * 6) * 6 : 0;
+      segs[i].setAttribute("transform", "translate(" + x.toFixed(2) + " " + y.toFixed(2) + ") rotate(" + (deg + bob).toFixed(2) + ") scale(" + squash.toFixed(3) + " 1)");
+      shadows[i].setAttribute("cx", x.toFixed(2));
+      shadows[i].setAttribute("cy", y.toFixed(2));
+    }
+  }
+
+  // ── Rotating messages ──
+  var messages = ["Chasing down the stars", "Polishing the moon", "Gathering the scholarships", "Lacing up for the run", "Almost there"];
+  var msgEl = document.getElementById("msgText");
+  var msgTimer;
+  function cycleMessages() {
+    var m = 0;
+    clearInterval(msgTimer);
+    msgEl.textContent = messages[0];
+    msgTimer = setInterval(function () {
+      m = (m + 1) % messages.length;
+      msgEl.textContent = messages[m];
+      msgEl.style.animation = "none"; void msgEl.offsetWidth; msgEl.style.animation = "";
+    }, 1100);
+  }
+
+  // ── Warp-speed shooting stars ──
+  var canvas = document.getElementById("warp");
+  var ctx = canvas.getContext("2d");
+  var stars = [], warping = false, warpStart = 0;
+  function sizeCanvas() {
+    var dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = innerWidth * dpr; canvas.height = innerHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // how big the core must grow to cover the screen
+    var diag = Math.hypot(innerWidth, innerHeight);
+    document.documentElement.style.setProperty("--cover", (diag / 30 * 1.15).toFixed(1));
+  }
+  function spawnStars() {
+    stars = [];
+    for (var i = 0; i < 220; i++) {
+      stars.push({ a: Math.random() * Math.PI * 2, d: Math.random() * 40, v: 2 + Math.random() * 6, w: Math.random() * 1.8 + .6, hue: Math.random() < .2 ? "255,201,74" : Math.random() < .2 ? "95,227,192" : "255,255,255" });
+    }
+  }
+  function drawWarp(now) {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    if (!warping) return;
+    var cx = innerWidth / 2, cy = innerHeight / 2;
+    var e = Math.min((now - warpStart) / 1600, 1);
+    var speed = 1 + e * 9;
+    stars.forEach(function (s) {
+      var d0 = s.d;
+      s.d += s.v * speed;
+      var len = Math.min(s.d - d0, 160) * 3;
+      var x1 = cx + Math.cos(s.a) * s.d, y1 = cy + Math.sin(s.a) * s.d;
+      var x0 = cx + Math.cos(s.a) * Math.max(s.d - len, 0), y0 = cy + Math.sin(s.a) * Math.max(s.d - len, 0);
+      var g = ctx.createLinearGradient(x0, y0, x1, y1);
+      g.addColorStop(0, "rgba(" + s.hue + ",0)");
+      g.addColorStop(1, "rgba(" + s.hue + ",.95)");
+      ctx.strokeStyle = g; ctx.lineWidth = s.w;
+      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+      if (s.d > Math.hypot(cx, cy) + 50) { s.d = Math.random() * 30; s.a = Math.random() * Math.PI * 2; }
+    });
+  }
+
+  // ── Timeline ──
+  var loader = document.getElementById("loader");
+  var t0 = performance.now(), timers = [];
+  function loop(now) {
+    drawCritter((now - t0) / 1000);
+    drawWarp(now);
+    requestAnimationFrame(loop);
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    loader.classList.remove("burst", "done");
+    warping = false;
+    cycleMessages();
+    // On the real site this waits for the page to finish loading (min ~3s).
+    timers.push(setTimeout(function () {
+      clearInterval(msgTimer);
+      spawnStars(); warping = true; warpStart = performance.now();
+      loader.classList.add("burst");
+    }, 3600));
+    timers.push(setTimeout(function () { loader.classList.add("done"); }, 3600 + 1900));
+    timers.push(setTimeout(function () { warping = false; }, 3600 + 2800));
+  }
+
+  sizeCanvas();
+  addEventListener("resize", sizeCanvas);
+  document.getElementById("replay").addEventListener("click", play);
+  if (reduce) drawCritter(0); else requestAnimationFrame(loop);
+  play();
+})();
+</script>
+</body>
+</html>

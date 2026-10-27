@@ -3,13 +3,24 @@
 <!doctype html>
 <html lang="{{ site.Language.Locale }}">
 <head>
+  <script>
+    // Play the supernova intro once per visit (skipped for reduced motion).
+    (function (r) {
+      var seen = false;
+      try { seen = !!sessionStorage.getItem("seenIntro"); } catch (e) {}
+      if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) r.add("intro-seen"); else r.add("intro");
+    })(document.documentElement.classList);
+  </script>
   {{ partial "head.html" . }}
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  {{ with resources.Get "css/home.css" | minify | fingerprint }}
+  {{ range slice "css/home.css" "css/loader.css" }}
+  {{ with resources.Get . | minify | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{ end }}
   {{ end }}
 </head>
 <body class="night">
+  {{ partial "home/loader.html" $d }}
   <canvas id="sky" aria-hidden="true"></canvas>
   {{ partial "home/sprites.html" . }}
 
@@ -276,6 +287,9 @@
   </footer>
   {{ end }}
 
+  {{ with resources.Get "js/loader.js" | minify | fingerprint }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+  {{ end }}
   {{ with resources.Get "js/home.js" | minify | fingerprint }}
   <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
   {{ end }}

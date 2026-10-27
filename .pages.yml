@@ -13,6 +13,11 @@ content:
     path: data/home.yaml
     format: yaml
     fields:
+      - name: loader
+        label: Loading screen
+        type: object
+        fields:
+          - { name: messages, label: "Lines shown while the star charges", type: string, list: true }
       - name: hero
         label: Top of the page
         type: object

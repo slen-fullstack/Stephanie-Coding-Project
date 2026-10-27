@@ -95,7 +95,12 @@
       io.unobserve(e.target);
     });
   }, { threshold: 0.15 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  function startReveals() {
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  }
+  // wait for the loading screen to finish so the first animations aren't missed
+  if (document.documentElement.classList.contains("intro")) document.addEventListener("intro:done", startReveals, { once: true });
+  else startReveals();
 
   // ── Clouds flip on tap (hover already flips on desktop) ──
   document.querySelectorAll(".cloud-card").forEach(function (card) {
