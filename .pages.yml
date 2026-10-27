@@ -13,6 +13,12 @@ content:
     path: data/home.yaml
     format: yaml
     fields:
+      - name: music
+        label: Background music
+        type: object
+        fields:
+          - { name: song, label: "Song file (leave empty to turn music off)", type: string }
+          - { name: volume, label: "Volume (0.05 = very quiet, 0.5 = loud)", type: number }
       - name: loader
         label: Loading screen
         type: object

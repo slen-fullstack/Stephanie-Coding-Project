@@ -1,3 +1,6 @@
+music:
+  song: /audio/space.mp3
+  volume: 0.18
 loader:
   messages:
     - Gathering stardust

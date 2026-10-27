@@ -1,0 +1,9 @@
+{{- /* Background music button. Song and volume come from data/home.yaml → music. */ -}}
+{{- with .music }}{{ with .song }}
+<button class="music" id="music" type="button" aria-pressed="false" aria-label="Turn music on" data-volume="{{ $.music.volume | default 0.18 }}">
+  <svg class="note" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 18.5a3 3 0 1 1-2-2.83V5.5l12-2.5v12a3 3 0 1 1-2-2.83V7.1l-8 1.67z"/><path class="slash" d="M3 3l18 18" stroke="#ff8a4c" stroke-width="2.4" stroke-linecap="round"/></svg>
+  <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
+<span class="music-tip" id="music-tip" aria-hidden="true">Music</span>
+<audio id="music-song" loop preload="none" src="{{ strings.TrimPrefix "/" . | relURL }}"></audio>
+{{ end }}{{ end -}}
