@@ -223,20 +223,35 @@ main, footer { position: relative; z-index: 1; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } }
 
 /* ── wooden frames ── */
-.frames { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4rem; margin-top: 2rem; }
+.frames { display: flex; flex-direction: column; gap: 3rem; margin-top: 2.5rem; }
 .wood {
-  display: block; padding: 16px; border-radius: 4px; text-decoration: none;
+  display: block; padding: 18px; border-radius: 6px; text-decoration: none; color: inherit;
   background: repeating-linear-gradient(90deg, #7a4a24 0 7px, #6d401d 7px 11px, #84522a 11px 16px);
-  box-shadow: inset 0 0 0 3px #5a3415, 0 18px 34px rgba(0, 0, 30, .55); transition: transform .3s;
+  box-shadow: inset 0 0 0 3px #5a3415, 0 22px 40px rgba(0, 0, 30, .55); transition: transform .35s;
 }
-.wood:hover { transform: rotate(-1.5deg) scale(1.03); }
-.wood .canvas { display: flex; flex-direction: column; gap: .4rem; height: 100%; min-height: 200px; justify-content: center; text-align: center; padding: 1.2rem; background: var(--paper); color: #3a3150; box-shadow: inset 0 0 18px rgba(120, 80, 30, .3); }
-.wood img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; margin-bottom: .4rem; }
-.wood .embed { position: relative; display: block; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; margin-bottom: .4rem; }
-/* render the page at desktop size, then shrink it to fit the frame */
-.wood .embed iframe { position: absolute; top: 0; left: 0; width: 400%; height: 400%; border: 0; transform: scale(.25); transform-origin: 0 0; pointer-events: none; }
-.wood strong { font-family: var(--display); font-size: 1.2rem; color: var(--navy); }
-.wood span span, .wood .canvas > span { font-size: .92rem; }
+.wood:nth-child(odd):hover { transform: rotate(-.6deg) scale(1.015); }
+.wood:nth-child(even):hover { transform: rotate(.6deg) scale(1.015); }
+.wood .canvas {
+  display: grid; grid-template-columns: 1.45fr 1fr; gap: 2.2rem; align-items: center; padding: 1.8rem;
+  background: var(--paper); color: #3a3150; box-shadow: inset 0 0 22px rgba(120, 80, 30, .3);
+}
+.wood:nth-child(even) .browser { order: 2; }
+.browser { display: block; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 14px 30px rgba(40, 30, 60, .28); transition: box-shadow .35s; }
+.wood:hover .browser { box-shadow: 0 20px 40px rgba(40, 30, 60, .38); }
+.browser-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #ece8f6; border-bottom: 1px solid #ddd6ee; }
+.browser-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; flex: none; }
+.browser-bar i:nth-child(2) { background: #febc2e; }
+.browser-bar i:nth-child(3) { background: #28c840; }
+.browser-url { flex: 1; margin-left: 10px; padding: 3px 12px; border-radius: 999px; background: #fff; color: #6b6488; font-size: .78rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.browser-view { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #f6f4fb; }
+.browser-view img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .6s; }
+.wood:hover .browser-view img { transform: scale(1.04); }
+/* render the page at desktop size, then shrink it to fit the window */
+.browser-view iframe { position: absolute; top: 0; left: 0; width: 200%; height: 200%; border: 0; transform: scale(.5); transform-origin: 0 0; pointer-events: none; }
+.feature-text { display: flex; flex-direction: column; gap: .8rem; align-items: flex-start; }
+.feature-text strong { font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.15; color: var(--navy); }
+.feature-text > span:not(.btn) { font-size: 1.05rem; }
+.feature-text .btn { margin-top: .4rem; }
 
 /* ── footer hills ── */
 .hills { position: relative; margin-top: 220px; background: #1c2759; padding-bottom: 2rem; }
@@ -260,7 +275,11 @@ main, footer { position: relative; z-index: 1; }
   .moon { width: 160px; right: 0; }
   .beam { display: none; }
   .about, .running, .endorse-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .clouds, .hanging, .frames { grid-template-columns: 1fr; }
+  .clouds, .hanging { grid-template-columns: 1fr; }
+  .wood { padding: 12px; }
+  .wood .canvas { grid-template-columns: 1fr; gap: 1.2rem; padding: 1rem; }
+  .wood:nth-child(even) .browser { order: 0; }
+  .browser-view iframe { width: 300%; height: 300%; transform: scale(.3333); }
   .cloud-card { height: 420px; }
   .stars { grid-template-columns: repeat(2, 1fr); }
   .stat:nth-child(even) { margin-top: 0; }
