@@ -1,5 +1,5 @@
 music:
-  song: /audio/space.mp3
+  song: ""   # music is off; put /audio/space.mp3 back here to turn it on
   volume: 0.18
 loader:
   messages:
