@@ -144,8 +144,9 @@ features:
       image: "/images/peoples-voice.jpg"
       url: "https://www.thepeoplesvoicearticle.com/"
     - title: "Nurtured Youth Community"
-      text: "A youth mental health community supporting kids across Canada."
-      url: "https://www.nurturedyouthcommunity.com/"
+      text: "CBC Kids News: \"A teen-run mental health organization wants to help youth.\""
+      image: "/images/cbc-kids-news.jpg"
+      url: "https://www.cbc.ca/kidsnews/post/a-teen-run-mental-health-organization-wants-to-help-youth"
 
 contact:
   title: "Say hello"
