@@ -195,6 +195,9 @@ main, footer { position: relative; z-index: 1; }
 .hang .string::before { content: ""; position: absolute; top: -8px; left: -7px; width: 16px; height: 16px; border-radius: 50%; background: #ffe9a6; box-shadow: 0 0 18px 6px rgba(255, 216, 107, .6); }
 .frame { background: var(--paper); color: #2b2440; padding: 14px 14px 1.4rem; border-radius: 6px; box-shadow: 0 0 0 10px var(--wood), 0 20px 40px rgba(0, 0, 30, .5); }
 .frame img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; margin-bottom: 1rem; }
+.hang.wide { grid-column: 1 / -1; }
+.frame-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+.frame-photos img { margin-bottom: 0; }
 .frame h3 { font-size: 1.25rem; color: var(--navy); padding: 0 .4rem; }
 .frame p { font-size: .95rem; padding: 0 .4rem; }
 .frame a { color: #4a3ad1; font-weight: 700; padding: 0 .4rem; }
@@ -276,7 +279,7 @@ main, footer { position: relative; z-index: 1; }
   .moon { width: 160px; right: 0; }
   .beam { display: none; }
   .about, .running, .endorse-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .clouds, .hanging { grid-template-columns: 1fr; }
+  .clouds, .hanging, .frame-photos { grid-template-columns: 1fr; }
   .wood { padding: 12px; }
   .wood .canvas { grid-template-columns: 1fr; gap: 1.2rem; padding: 1rem; }
   .wood:nth-child(even) .browser { order: 0; }

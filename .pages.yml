@@ -133,6 +133,7 @@ content:
             fields:
               - { name: title, label: Title, type: string }
               - { name: image, label: Photo, type: image }
+              - { name: images, label: "Photos (2+, shown side by side; replaces Photo)", type: image, list: true }
               - { name: text, label: Text, type: text }
               - name: link
                 label: Link (optional)
