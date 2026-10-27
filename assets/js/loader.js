@@ -116,7 +116,6 @@
     loader.classList.add("done");
     root.classList.remove("intro");
     root.classList.add("intro-seen");
-    try { sessionStorage.setItem("seenIntro", "1"); } catch (err) {}
     document.dispatchEvent(new Event("intro:done"));
     setTimeout(function () { warping = false; loader.remove(); }, 1000);
   }
