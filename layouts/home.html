@@ -1,17 +1,274 @@
-{{ define "main" }}
-<section class="hero">
-  {{ with .Params.image }}<img class="hero-img" src="{{ . | relURL }}" alt="{{ site.Title }}">{{ end }}
-  <h1>{{ with .Params.heading }}{{ . }}{{ else }}{{ site.Title }}{{ end }}</h1>
-  {{ with .Params.subheading }}<p class="lead">{{ . }}</p>{{ end }}
-</section>
-<div class="content">{{ .Content }}</div>
+{{- /* Homepage. All the words and pictures come from data/home.yaml. */ -}}
+{{- $d := hugo.Data.home -}}
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+  {{ partial "head.html" . }}
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  {{ with resources.Get "css/home.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{ end }}
+</head>
+<body class="night">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  {{ partial "home/sprites.html" . }}
 
-{{ with site.GetPage "/portfolio" }}
-{{ with first 3 .Pages }}
-<section>
-  <h2>Recent work</h2>
-  {{ partial "cards.html" . }}
-</section>
-{{ end }}
-{{ end }}
-{{ end }}
+  <header class="topbar">
+    <svg class="topbar-clouds" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 0h1440v70c-40 18-80 30-130 20-30 30-90 34-130 10-40 28-110 26-140-6-40 26-110 22-140-10-50 30-120 28-150-6-40 22-100 24-130-4-40 30-110 30-150 0-30 20-90 26-130 4-40 26-100 24-130-4-30 18-70 22-110 8L0 76z" fill="#2b3477"/>
+      <path d="M0 0h1440v46c-40 14-90 18-120 4-40 22-100 20-130-2-40 20-100 18-130-6-40 20-100 22-140-2-40 22-110 20-140-4-40 18-100 16-130-4-40 20-100 22-140-2-40 18-100 18-130-6-40 16-80 14-110 0L0 40z" fill="#222a66"/>
+    </svg>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#awards">Awards</a>
+      <a href="#numbers">Numbers</a>
+      <a href="#running">Running</a>
+      <a href="#moments">Moments</a>
+      <a href="#endorsements">Endorsements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  {{- /* sparkles scattered over the page, purely decorative */ -}}
+  <div class="sparkles" aria-hidden="true">
+    {{ range $i, $s := slice
+      (dict "x" "6%" "y" "4%" "c" "teal" "s" 46) (dict "x" "92%" "y" "9%" "c" "teal" "s" 40)
+      (dict "x" "4%" "y" "16%" "c" "orange" "s" 30) (dict "x" "58%" "y" "14%" "c" "orange" "s" 26)
+      (dict "x" "88%" "y" "27%" "c" "yellow" "s" 34) (dict "x" "12%" "y" "33%" "c" "teal" "s" 38)
+      (dict "x" "47%" "y" "42%" "c" "orange" "s" 30) (dict "x" "95%" "y" "48%" "c" "teal" "s" 32)
+      (dict "x" "3%" "y" "57%" "c" "orange" "s" 40) (dict "x" "70%" "y" "62%" "c" "yellow" "s" 28)
+      (dict "x" "30%" "y" "71%" "c" "teal" "s" 34) (dict "x" "90%" "y" "77%" "c" "orange" "s" 36)
+      (dict "x" "8%" "y" "86%" "c" "yellow" "s" 30) (dict "x" "55%" "y" "92%" "c" "teal" "s" 28)
+    }}
+    <svg class="sparkle {{ $s.c }}" style="left:{{ $s.x | safeCSS }};top:{{ $s.y | safeCSS }};width:{{ $s.s }}px;height:{{ $s.s }}px;--d:{{ mul $i 0.37 }}s"><use href="#sparkle"/></svg>
+    {{ end }}
+  </div>
+
+  <main id="top">
+    {{/* ───────── HERO ───────── */}}
+    {{ with $d.hero }}
+    <section class="hero">
+      <div class="hero-text reveal">
+        <p class="kicker">{{ .kicker }}</p>
+        <h1 class="hero-name">
+          {{- range $i, $w := split .name " " }}<span class="word">{{ range $j, $ch := split $w "" }}<span class="ch" style="--i:{{ add (mul $i 8) $j }}">{{ $ch }}</span>{{ end }}</span> {{ end -}}
+        </h1>
+        <p class="tagline">{{ .tagline }}</p>
+        <div class="buttons">
+          {{ range .buttons }}<a class="btn" href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener"{{ end }}>{{ .label }}</a>{{ end }}
+        </div>
+      </div>
+
+      <div class="hero-sky" aria-hidden="true">
+        <div class="beam"></div>
+        <svg class="moon" viewBox="0 0 200 200">
+          <defs>
+            <radialGradient id="moonFill" cx="40%" cy="35%" r="70%">
+              <stop offset="0" stop-color="#fff6c8"/><stop offset=".6" stop-color="#ffd86b"/><stop offset="1" stop-color="#f4b740"/>
+            </radialGradient>
+            <mask id="crescent"><rect width="200" height="200" fill="#fff"/><circle cx="135" cy="80" r="78" fill="#000"/></mask>
+          </defs>
+          <circle cx="100" cy="100" r="86" fill="url(#moonFill)" mask="url(#crescent)"/>
+          <circle cx="52" cy="128" r="7" fill="#f2c25a" opacity=".6"/><circle cx="40" cy="96" r="4" fill="#f2c25a" opacity=".6"/>
+          <circle cx="78" cy="160" r="5" fill="#f2c25a" opacity=".5"/>
+        </svg>
+      </div>
+
+      {{ with $d.counter }}
+      <div class="counter reveal" role="group" aria-label="{{ .title }}">
+        <p class="counter-title">{{ .title }}</p>
+        <p class="counter-num" data-count="{{ .value }}" data-prefix="{{ .prefix }}">{{ .prefix }}{{ lang.FormatNumber 0 .value }}</p>
+      </div>
+      {{ end }}
+    </section>
+    {{ end }}
+
+    {{/* ───────── ABOUT ───────── */}}
+    {{ with $d.about }}
+    <section id="about" class="about wrap">
+      <div class="portrait reveal">
+        <div class="orbit" aria-hidden="true"><svg class="sparkle yellow"><use href="#sparkle"/></svg><svg class="sparkle teal"><use href="#sparkle"/></svg><svg class="sparkle orange"><use href="#sparkle"/></svg></div>
+        {{ with .image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="Portrait of {{ site.Title }}" width="764" height="969">{{ end }}
+      </div>
+      <div class="reveal">
+        <h2>{{ .title }}</h2>
+        {{ range .paragraphs }}<p>{{ . | safeHTML }}</p>{{ end }}
+        {{ with .button }}<a class="btn" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}
+      </div>
+    </section>
+    {{ end }}
+
+    {{/* ───────── HIGHLIGHT CLOUDS ───────── */}}
+    {{ with $d.highlights }}
+    <section id="awards" class="wrap">
+      <h2 class="reveal">{{ .title }}</h2>
+      <p class="muted reveal">{{ .intro }}</p>
+      <div class="clouds">
+        {{ range $i, $h := .items }}
+        <div class="cloud-card reveal" role="button" tabindex="0" aria-expanded="false" style="--d:{{ mul $i 0.6 }}s">
+          <span class="cloud-inner">
+            <span class="cloud-front">
+              <svg class="cloud-shape" viewBox="0 0 400 300" aria-hidden="true"><use href="#cloud"/></svg>
+              {{ with $h.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}
+              <span class="cloud-title">{{ $h.title }}</span>
+              <span class="cloud-date">{{ $h.date }}</span>
+              <span class="cloud-hint">Learn more ➶</span>
+            </span>
+            <span class="cloud-back">
+              <span class="cloud-title">{{ $h.title }}</span>
+              <span class="cloud-text">{{ $h.text }}</span>
+              {{ with $h.more }}<span class="cloud-text small">{{ . }}</span>{{ end }}
+              {{ with $h.link }}<a class="cloud-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}
+            </span>
+          </span>
+        </div>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+
+    {{/* ───────── STAT STARS ───────── */}}
+    {{ with $d.stats }}
+    <section id="numbers" class="wrap">
+      <h2 class="reveal">{{ .title }}</h2>
+      <div class="stars">
+        {{ range $i, $s := .items }}
+        <div class="stat reveal" style="--d:{{ mul $i 0.5 }}s">
+          <svg class="stat-star" viewBox="0 0 200 200" aria-hidden="true"><use href="#bigstar"/></svg>
+          <span class="stat-num" data-count="{{ $s.value }}" data-prefix="{{ $s.prefix }}" data-suffix="{{ $s.suffix }}">{{ $s.prefix }}{{ lang.FormatNumber 0 $s.value }}{{ $s.suffix }}</span>
+          <span class="stat-label">{{ $s.label }}</span>
+        </div>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+
+    {{/* ───────── SCHOLARSHIPS ───────── */}}
+    {{ with $d.scholarships }}
+    <section class="wrap scholarships">
+      <h2 class="reveal">{{ .title }}</h2>
+      <p class="reveal">{{ .intro }}</p>
+      <ol class="jar">
+        {{ range $i, $s := .items }}<li class="reveal" style="--d:{{ mul $i 0.06 }}s"><svg class="tiny-star" aria-hidden="true"><use href="#sparkle"/></svg>{{ $s }}</li>{{ end }}
+      </ol>
+    </section>
+    {{ end }}
+
+    {{/* ───────── RUNNING ───────── */}}
+    {{ with $d.running }}
+    <section id="running" class="wrap running">
+      <div class="reveal">
+        <h2>{{ .title }}</h2>
+        {{ range .paragraphs }}<p>{{ . | safeHTML }}</p>{{ end }}
+      </div>
+      <div class="polaroids reveal">
+        {{ range $i, $img := .images }}<img class="polaroid p{{ $i }}" src="{{ strings.TrimPrefix "/" $img | relURL }}" alt="Stephanie running, photo {{ add $i 1 }}" loading="lazy">{{ end }}
+      </div>
+      {{ with .quote }}
+      <figure class="trail reveal">
+        <svg class="trail-path" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90 C 150 10, 300 110, 500 60 S 850 10, 1000 70"/></svg>
+        <blockquote>“{{ . }}”</blockquote>
+        <figcaption>— {{ $d.running.quote_by }}</figcaption>
+      </figure>
+      {{ end }}
+    </section>
+    {{ end }}
+
+    {{/* ───────── MOMENTS (string lights) ───────── */}}
+    {{ with $d.events }}
+    <section id="moments" class="moments">
+      <svg class="lights" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+        <path class="wire" d="M0 30 Q 360 200 720 60 T 1440 40" />
+        {{ range $i := seq 0 28 }}
+        {{ $t := div (float $i) 28 }}
+        <circle class="bulb" style="--d:{{ mod $i 5 }}" cx="{{ mul $t 1440 }}" cy="0" r="7" data-t="{{ $t }}"/>
+        {{ end }}
+      </svg>
+      <div class="wrap">
+        <h2 class="reveal">{{ .title }}</h2>
+        <div class="hanging">
+          {{ range $i, $e := .items }}
+          <article class="hang reveal" style="--d:{{ mul $i 0.8 }}s">
+            <span class="string" aria-hidden="true"></span>
+            <div class="frame">
+              {{ with $e.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}
+              <h3>{{ $e.title }}</h3>
+              <p>{{ $e.text }}</p>
+              {{ with $e.link }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}
+            </div>
+          </article>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+    {{ end }}
+
+    {{/* ───────── ENDORSEMENTS ───────── */}}
+    {{ with $d.endorsements }}
+    <section id="endorsements" class="wrap endorse">
+      <h2 class="reveal">{{ .title }}</h2>
+      <p class="muted reveal">{{ .intro }}</p>
+      <div class="endorse-grid">
+        <div class="bubbles" role="tablist" aria-label="Endorsements">
+          {{ range $i, $e := .items }}
+          <button class="bubble reveal" role="tab" type="button" id="tab-{{ $i }}" aria-controls="quote-{{ $i }}" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}" style="--d:{{ mul $i 0.4 }}s">
+            <span class="bubble-name">{{ $e.name }}</span>
+            <span class="bubble-role">{{ $e.role }}</span>
+          </button>
+          {{ end }}
+        </div>
+        <div class="quote-panel reveal">
+          {{ range $i, $e := .items }}
+          <div class="quote" role="tabpanel" id="quote-{{ $i }}" aria-labelledby="tab-{{ $i }}"{{ if ne $i 0 }} hidden{{ end }}>
+            <h3>{{ $e.name }}</h3>
+            <p class="quote-role">{{ $e.role }}</p>
+            <blockquote>“{{ $e.quote }}”</blockquote>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+    {{ end }}
+
+    {{/* ───────── FEATURES (frames) ───────── */}}
+    {{ with $d.features }}
+    <section class="wrap">
+      <h2 class="reveal center">{{ .title }}</h2>
+      <div class="frames">
+        {{ range $i, $f := .items }}
+        <a class="wood reveal" href="{{ $f.url }}" target="_blank" rel="noopener" style="--d:{{ mul $i 0.3 }}s">
+          <span class="canvas">
+            {{ with $f.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}
+            <strong>{{ $f.title }}</strong>
+            <span>{{ $f.text }}</span>
+          </span>
+        </a>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+  </main>
+
+  {{ with $d.contact }}
+  <footer id="contact" class="hills">
+    <svg class="hill-layers" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 140 C 200 60 420 60 640 120 S 1100 40 1440 110 V260 H0z" fill="#26346f"/>
+      <path d="M0 190 C 260 120 480 150 720 180 S 1160 120 1440 170 V260 H0z" fill="#1c2759"/>
+    </svg>
+    <div class="footer-body wrap">
+      <h2>{{ .title }}</h2>
+      <p>{{ .text }}</p>
+      <div class="buttons">
+        {{ with .email }}<a class="btn" href="mailto:{{ . }}">Email me</a>{{ end }}
+        {{ range .links }}<a class="btn ghost" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}
+      </div>
+      <p class="copy">&copy; {{ now.Year }} {{ site.Title }}</p>
+    </div>
+  </footer>
+  {{ end }}
+
+  {{ with resources.Get "js/home.js" | minify | fingerprint }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+  {{ end }}
+</body>
+</html>

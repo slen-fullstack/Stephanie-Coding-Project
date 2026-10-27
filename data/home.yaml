@@ -1,0 +1,156 @@
+# ─────────────────────────────────────────────────────────────
+#  HOMEPAGE CONTENT
+#  Everything you see on the front page lives in this one file.
+#  Edit the text between the quotes, save, and push to GitHub —
+#  the live site updates itself in about a minute.
+#
+#  Tips:
+#   • Keep the indentation (spaces) exactly as it is.
+#   • Images go in static/images/ and are written as /images/name.jpg
+#   • To hide a whole section, delete it (or put # in front of each line).
+# ─────────────────────────────────────────────────────────────
+
+hero:
+  kicker: "Stephanie Slen's Bulletin Board"
+  name: "Stephanie Slen"
+  tagline: "At just 21, Stephanie Slen drives bold initiatives in education, equity, and community power—turning grassroots activism into $2.4M+ in scholarships for youth."
+  buttons:
+    - label: "Read my story"
+      url: "#about"
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/stephanieslen/"
+
+# The big number that counts up inside the moonbeam.
+counter:
+  title: "Full-ride scholarships secured for students"
+  prefix: "$"
+  value: 2401950
+
+about:
+  title: "Welcome to my bulletin board"
+  image: "/images/profile.jpg"
+  paragraphs:
+    - "At 19, Stephanie earned nine scholarships worth $280,000 and turned that success into a mission to help other students achieve the same. What began as her sharing advice with a few peers has since grown into supporting students in securing full-ride scholarships totaling $2,401,950. Her work has been featured on <em>Global News</em>, <em>CBC News</em>, and in the <em>Vancouver Sun</em> (April 14, 2026 issue), and she was nominated as a Metro Vancouver Young Woman of Distinction for her impact."
+    - "Stephanie has always loved storytelling. She published seven stories in the Writers' Exchange storybooks and spent five years there as a teen leader, teaching thousands of children to read. That passion grew into writing articles about students who've overcome challenges and earned scholarships, with her work featured in <em>The People's Voice Article</em>."
+  button:
+    label: "The People's Voice Article"
+    url: "https://www.thepeoplesvoicearticle.com/"
+
+# The glowing stars. "value" counts up from 0; prefix/suffix wrap it.
+stats:
+  title: "By the numbers…"
+  items:
+    - { value: 11, label: "Scholarships" }
+    - { value: 14, label: "Half marathons" }
+    - { value: 7500, prefix: "$", suffix: "+", label: "Raised at the gala" }
+    - { value: 7, label: "Published stories" }
+
+# The floating clouds. Hover (or tap) a cloud to read more.
+highlights:
+  title: "Awards & philanthropy"
+  intro: "Hover over (or tap) a cloud to read more."
+  items:
+    - title: "Uggla Family Full Ride Scholar"
+      date: "Simon Fraser University"
+      image: "/images/uggla-scholar.jpg"
+      text: "Stephanie Slen is one of ten recipients of the Simon Fraser University Uggla Family Scholarship, a highly prestigious, worldwide award connecting exceptional students from institutions such as the London School of Economics and beyond. This full-ride scholarship supports leaders pursuing academic excellence and community impact."
+      more: "Lance Uggla, Vice Chair of General Atlantic, co-founded BeyondNetZero, the firm's first climate growth equity fund supporting innovative companies advancing net-zero solutions. Previously, he founded and led IHS Markit, taking it public in 2014 and orchestrating its $44 billion merger with S&P Global."
+      link: { label: "View LinkedIn post", url: "https://www.linkedin.com/posts/stephanieslen_im-so-thrilled-to-be-celebrating-together-activity-7398877671771860992-OIik" }
+    - title: "Canucks Trevor Linden Community Spirit Scholar"
+      date: "One of four in BC"
+      image: "/images/trevor-linden-scholarship.jpg"
+      text: "Stephanie Slen is a recipient of the Canucks Trevor Linden Community Spirit Scholarship, a distinguished award granted annually to four graduating students across British Columbia who have demonstrated exceptional leadership, community service, and resilience."
+      more: "Trevor Linden is one of the most accomplished figures in Canadian hockey history—a longtime Vancouver Canuck captain, leader of the NHL Players' Association, Olympian, and recipient of numerous awards for on-ice performance and off-ice charity."
+    - title: "YWCA Young Women of Distinction, Nominee"
+      date: "2025 · All of Metro Vancouver"
+      image: "/images/ywca-nominee.jpg"
+      text: "Stephanie Slen is a nominee for the 2025 YWCA Young Women of Distinction Award, which recognizes exceptional young women aged 18–25 who demonstrate leadership, maturity, and compassion."
+      more: "The award honours those who have made a significant difference in Metro Vancouver through their commitment to a cause or the pursuit of a personal goal, showing perseverance, innovation, and a deep understanding of community issues."
+    - title: "Co-Founder, Nurtured Youth Community"
+      date: "Founded at 16"
+      image: "/images/nurtured-youth.jpg"
+      text: "At 16 after attending SHAD Canada at York University, a S.T.E.A.M. Entrepreneur Program on a full scholarship, Stephanie co-founded Nurtured Youth Community in Vancouver, British Columbia with her co-founder Geertika Jeyaganesha in Toronto, supporting kids across Canada with their mental health during COVID-19."
+      more: "Six months after it was founded it won a $5,000 grant from OXY Canada as the Face of Today and was featured in a CBC News article."
+      link: { label: "Nurtured Youth Community", url: "https://www.nurturedyouthcommunity.com/" }
+
+scholarships:
+  title: "Scholarship recipient"
+  intro: "Stephanie Slen is the recipient of eleven scholarships:"
+  items:
+    - "2023 Simon Fraser University Uggla Family Full-Ride Scholarship (one of ten recipients)"
+    - "SHINE Beedie Luminaries Scholarship"
+    - "Canucks Trevor Linden Community Spirit Scholarship (one of four recipients)"
+    - "BC Superintendents Scholarship (Vancouver recipient)"
+    - "SASAH Scholarship"
+    - "Skills for Hope Foundation Scholarship"
+    - "Allan Ross Scholarship"
+    - "Pathways to Education Scholarship"
+    - "Britannia Class of '77 Scholarship"
+    - "2023 Student Council Scholarship Award"
+    - "2026 TELUS Student Bursary Award"
+
+running:
+  title: "Marathon runner"
+  images:
+    - "/images/marathon-medals.jpg"
+    - "/images/marathon-race.jpg"
+    - "/images/marathon-finish.jpg"
+  paragraphs:
+    - "At 14, after a life-changing event, Stephanie began running—and she hasn't stopped since. Over the last six years, she has completed fourteen half marathons and two full marathons across the West Coast, including Vancouver, Seattle, Victoria, and Whistler. Less than 1% of people in the world run a marathon each year, and the average marathoner is in their late thirties or early forties. Stephanie defied those odds before even turning twenty."
+    - "Her passion for running extends beyond personal achievement. In 2022, as Student Council President, she organized a school-wide Terry Fox Run to raise funds for cancer research. Each year, she also participates in the SHLF Run, supporting children in need at the Streetfront Program—a community close to her heart."
+    - "Stephanie trains under the guidance of Mr. Stokes, a renowned marathon coach who has completed over 150 marathons and has helped countless youth from Vancouver's Downtown Eastside discover the power of perseverance through running."
+  quote: "It's about 55,000 strides to finish a marathon. That's 55,000 opportunities to quit. Imagine how much affirmation you get when you don't quit 55,000 times."
+  quote_by: "Mr. Stokes, in Impact Magazine"
+
+# Hanging under the string lights.
+events:
+  title: "Moments"
+  items:
+    - title: "Simon Fraser University President and Vice-Chancellor's Award Dinner 2024"
+      image: "/images/sfu-dinner.jpg"
+      text: "\"I had the incredible honor of attending the 2024 Simon Fraser University President and Vice-Chancellor's Award Dinner as an SFU Uggla Family Scholar. A huge thank you to Joy Johnson, SFU's 10th President and Vice-Chancellor, and Erin Morantz, Vice-President of Advancement & Alumni Engagement, for their unwavering support of Uggla Scholars… I am beyond grateful for this experience and the opportunity to represent SFU as an Uggla Family Scholar.\""
+      link: { label: "Read the event article", url: "https://www.stephanieslen.com/sfu-president-and-vice-chancellors-award-dinner-2024.html" }
+    - title: "Canada's Great Kitchen Party Gala · October 2025"
+      image: "/images/gala-fresh-roots.jpg"
+      text: "At one of Canada's most distinguished culinary galas — Canada's Great Kitchen Party, celebrated in ten cities and recognized as North America's premier gastronomic event — Stephanie Slen represented Fresh Roots Urban Farm Society, helping raise over $7,500 in support of youth empowerment and community food programs."
+
+# Click a speech bubble to read the endorsement.
+endorsements:
+  title: "Endorsements"
+  intro: "Click on the speech bubbles to read:"
+  items:
+    - name: "Trevor Stokes"
+      role: "Marathon Coach & Department Head – Alternative Programs, Britannia Secondary"
+      quote: "Stephanie is the epicenter of our school. Every good thing that occurs is either touched, produced, guided, sponsored, or completed by Stephanie. This is not an exaggeration. She is front and centre every single day. She is hard-wired to do this. She is not doing this to pad an already ridiculous resume. She operates selflessly, with a relentless desire to make this world better."
+    - name: "Alexa Pitoulis"
+      role: "Executive Director, BC Family Doctors & Former Executive Director of Fresh Roots Urban Farm"
+      quote: "Stephanie's tenacity, humility, commitment to justice and to her own personal learning and development is truly inspirational. Her impact on the lives of so many Fresh Roots youth participants cannot be understated. Knowing Stephanie gives me hope for the future. I cannot imagine a more deserving recipient for the Young Woman of Distinction Award."
+    - name: "Cynthia Low"
+      role: "Executive Director, Britannia Community Centre"
+      quote: "The staff, board, and entire community of Britannia Community Services Centre Society (BCSCS) proudly endorse Stephanie Slen. BCSCS operates a 17-acre municipal community hub in East Vancouver, encompassing schools, a public library, an ice arena, an Indigenous Carving Pavilion, a teen centre, a seniors centre, daycares, and a swimming pool, serving thousands of residents each year. Stephanie has been a remarkable leader from a young age, serving on the Britannia Board of Management at just 18 — one of only 12 elected members — where she contributed to youth programming, governance, and community-building initiatives with exceptional vision, maturity, and dedication. Her leadership has strengthened our community and amplified youth voices, and we are honoured to stand behind her as she continues to make a lasting impact for years to come."
+    - name: "Annastasia Forst"
+      role: "Managing Director, The Writers' Exchange"
+      quote: "Stephanie is a highly valued member of our community, her school community, and the neighborhood community. Throughout the years I witnessed her passion for sustainability, community, and working with young people expand beyond school and the Writers' Exchange."
+
+# The framed pictures.
+features:
+  title: "Featured in"
+  items:
+    - title: "Pathways to Education"
+      text: "Featured story: \"Stephanie is showing up for others.\""
+      url: "https://www.pathwaystoeducation.ca/story/stephanie-is-showing-up-for-others/"
+    - title: "The People's Voice Article"
+      text: "Articles about students who've overcome challenges and earned scholarships."
+      image: "/images/peoples-voice.jpg"
+      url: "https://www.thepeoplesvoicearticle.com/"
+    - title: "Nurtured Youth Community"
+      text: "A youth mental health community supporting kids across Canada."
+      url: "https://www.nurturedyouthcommunity.com/"
+
+contact:
+  title: "Say hello"
+  text: "Want to work together, share a story, or ask about scholarships? Reach out anytime."
+  email: "slensteph@gmail.com"
+  links:
+    - { label: "LinkedIn", url: "https://www.linkedin.com/in/stephanieslen/" }
+    - { label: "Instagram", url: "https://www.instagram.com/stephanieslen/" }
