@@ -158,7 +158,8 @@
     });
   }, { rootMargin: "-45% 0px -50% 0px" });
   links.forEach(function (a) {
-    var s = document.querySelector(a.getAttribute("href"));
+    var href = a.getAttribute("href");
+    var s = href.charAt(0) === "#" && document.querySelector(href);
     if (s) navIO.observe(s);
   });
 })();
