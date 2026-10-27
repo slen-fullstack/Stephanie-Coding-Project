@@ -4,11 +4,9 @@
 <html lang="{{ site.Language.Locale }}">
 <head>
   <script>
-    // Play the supernova intro once per visit (skipped for reduced motion).
+    // Play the supernova intro on every page load (skipped for reduced motion).
     (function (r) {
-      var seen = false;
-      try { seen = !!sessionStorage.getItem("seenIntro"); } catch (e) {}
-      if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) r.add("intro-seen"); else r.add("intro");
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) r.add("intro-seen"); else r.add("intro");
     })(document.documentElement.classList);
   </script>
   {{ partial "head.html" . }}

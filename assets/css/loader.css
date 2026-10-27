@@ -1,6 +1,6 @@
 /* ───────────────────────────────────────────────
    Supernova loading screen (homepage only).
-   Shows once per visit, then bursts into the site.
+   Plays on every page load, then bursts into the site.
    ─────────────────────────────────────────────── */
 html.intro, html.intro body { overflow: hidden; }
 html.intro-seen #loader { display: none; }
