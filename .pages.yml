@@ -1,0 +1,177 @@
+# Visual editor settings for Pages CMS (https://app.pagescms.org).
+# It turns data/home.yaml into a form with a box for every piece of the homepage.
+
+media:
+  input: static/images
+  output: /images
+  categories: [image]
+
+content:
+  - name: homepage
+    label: Homepage
+    type: file
+    path: data/home.yaml
+    format: yaml
+    fields:
+      - name: hero
+        label: Top of the page
+        type: object
+        fields:
+          - { name: kicker, label: Small line above your name, type: string }
+          - { name: name, label: Your name, type: string }
+          - { name: tagline, label: Tagline, type: text }
+          - name: buttons
+            label: Buttons
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{label}" } }
+            fields:
+              - { name: label, label: Button text, type: string }
+              - { name: url, label: "Link (a web address, or #about to jump down the page)", type: string }
+
+      - name: counter
+        label: Big counting number
+        type: object
+        fields:
+          - { name: title, label: Words above the number, type: string }
+          - { name: prefix, label: "Symbol before the number (e.g. $)", type: string }
+          - { name: value, label: "Number (no commas)", type: number }
+
+      - name: about
+        label: About / welcome
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - { name: image, label: Portrait photo, type: image }
+          - name: paragraphs
+            label: Paragraphs
+            description: "You can use <em>italics</em> around words."
+            type: text
+            list: true
+          - name: button
+            label: Button
+            type: object
+            fields:
+              - { name: label, label: Button text, type: string }
+              - { name: url, label: Link, type: string }
+
+      - name: highlights
+        label: Award clouds
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - { name: intro, label: Small line under heading, type: string }
+          - name: items
+            label: Clouds
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: date, label: Small line under title, type: string }
+              - { name: image, label: Round photo, type: image }
+              - { name: text, label: "Main text (back of cloud)", type: text }
+              - { name: more, label: "Extra text (smaller)", type: text }
+              - name: link
+                label: Link (optional)
+                type: object
+                fields:
+                  - { name: label, label: Link text, type: string }
+                  - { name: url, label: Link, type: string }
+
+      - name: stats
+        label: Glowing number stars
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - name: items
+            label: Stars
+            type: object
+            list: { max: 6, collapsible: { collapsed: true, summary: "{label}" } }
+            fields:
+              - { name: value, label: "Number (no commas)", type: number }
+              - { name: prefix, label: "Before the number (e.g. $)", type: string }
+              - { name: suffix, label: "After the number (e.g. +)", type: string }
+              - { name: label, label: Label, type: string }
+
+      - name: scholarships
+        label: Scholarship list
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - { name: intro, label: Intro line, type: string }
+          - { name: items, label: Scholarships, type: string, list: true }
+
+      - name: running
+        label: Marathon runner
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - { name: images, label: "Photos (best with 3)", type: image, list: { max: 3, collapsible: false } }
+          - { name: paragraphs, label: Paragraphs, type: text, list: true }
+          - { name: quote, label: Quote, type: text }
+          - { name: quote_by, label: Quote by, type: string }
+
+      - name: events
+        label: Moments (hanging photos)
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - name: items
+            label: Moments
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: image, label: Photo, type: image }
+              - { name: text, label: Text, type: text }
+              - name: link
+                label: Link (optional)
+                type: object
+                fields:
+                  - { name: label, label: Link text, type: string }
+                  - { name: url, label: Link, type: string }
+
+      - name: endorsements
+        label: Endorsements
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - { name: intro, label: Small line under heading, type: string }
+          - name: items
+            label: Endorsements
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{name}" } }
+            fields:
+              - { name: name, label: Name, type: string }
+              - { name: role, label: Role / title, type: string }
+              - { name: quote, label: Quote, type: text }
+
+      - name: features
+        label: Featured in (framed previews)
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - name: items
+            label: Features
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: text, label: Text, type: text }
+              - { name: url, label: Link, type: string }
+              - { name: image, label: Preview picture, type: image }
+              - { name: embed, label: Show a live preview of the link instead of the picture, type: boolean }
+
+      - name: contact
+        label: Contact (bottom of page)
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - { name: text, label: Text, type: text }
+          - { name: email, label: Email, type: string }
+          - name: links
+            label: Buttons
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{label}" } }
+            fields:
+              - { name: label, label: Button text, type: string }
+              - { name: url, label: Link, type: string }
