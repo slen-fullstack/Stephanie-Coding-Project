@@ -236,6 +236,7 @@ content:
                   - { name: dates, label: Dates, type: string }
                   - { name: points, label: Bullet points, type: text, list: true }
               - { name: photos, label: "Photo names from static/images/work (first one is the big photo)", type: string, list: true }
+              - { name: photo_full, label: "Show the whole photo (no cropping)", type: boolean }
       - name: certificate
         label: Certificate
         type: object
