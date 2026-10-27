@@ -1,0 +1,31 @@
+/* ───────────────────────────────────────────────
+   Guppy the sitting cat (Homepage).
+   He sits above the footer hills; click for a bounce.
+   ─────────────────────────────────────────────── */
+.guppy-spot { position: relative; display: flex; flex-direction: column; align-items: center; margin-top: 2rem; padding-bottom: .5rem; }
+.guppy { position: relative; width: 110px; padding: 0; border: 0; background: none; cursor: pointer; }
+.guppy img { display: block; width: 100%; height: auto; transform-origin: 50% 100%;
+  /* soft moonlight glow so a black cat shows up on the night sky */
+  filter: drop-shadow(0 0 10px rgba(195, 198, 236, .45)) drop-shadow(0 10px 16px rgba(0, 0, 30, .5)); }
+.guppy:hover img { transform: translateY(-4px); transition: transform .2s; }
+
+/* bounce! */
+.guppy.bounce img { animation: guppyBounce .7s ease; }
+@keyframes guppyBounce {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  20% { transform: translateY(0) scale(1.08, .9); }
+  45% { transform: translateY(-40px) scale(.95, 1.06); }
+  70% { transform: translateY(0) scale(1.06, .94); }
+  85% { transform: translateY(-8px) scale(1, 1); }
+}
+.guppy-heart { position: absolute; left: 50%; top: 0; font-size: 1.6rem; pointer-events: none; animation: guppyHeartUp 1s ease-out forwards; }
+@keyframes guppyHeartUp { from { opacity: 1; transform: translate(-50%, 0) scale(.6); } to { opacity: 0; transform: translate(calc(-50% + var(--dx)), -80px) scale(1.2); } }
+
+.guppy-caption { margin: .6rem 0 0; text-align: center; color: var(--muted); font-size: .85rem; opacity: .8; }
+
+@media (max-width: 860px) {
+  .guppy { width: 90px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .guppy.bounce img, .guppy:hover img { animation: none; transform: none; }
+}
