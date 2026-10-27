@@ -207,10 +207,11 @@
         <h2 class="reveal">{{ .title }}</h2>
         <div class="hanging">
           {{ range $i, $e := .items }}
-          <article class="hang reveal" style="--d:{{ mul $i 0.8 }}s">
+          <article class="hang reveal{{ if gt (len ($e.images | default slice)) 1 }} wide{{ end }}" style="--d:{{ mul $i 0.8 }}s">
             <span class="string" aria-hidden="true"></span>
             <div class="frame">
-              {{ with $e.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}
+              {{ with $e.images }}<div class="frame-photos">{{ range . }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}</div>
+              {{ else }}{{ with $e.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}{{ end }}
               <h3>{{ $e.title }}</h3>
               <p>{{ $e.text }}</p>
               {{ with $e.link }}{{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}{{ end }}

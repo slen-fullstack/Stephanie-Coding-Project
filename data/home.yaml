@@ -156,6 +156,23 @@ running:
 events:
   title: Moments
   items:
+    - title: Visier × Writers' Exchange Speech · August 2026
+      images:
+        - /images/visier-backpacks.jpg
+        - /images/visier-sign.jpg
+      text: In August 2026, I gave a speech to 100 Visier employees on the top
+        floor of a downtown Vancouver conference space about the impact we were
+        making that evening. Together, we packed 250 backpacks for high school
+        students with the charity Writers' Exchange as part of a corporate event
+        with Visier. Each backpack held handwritten inspirational notes from
+        Visier employees, along with school supplies and snacks.
+    - title: Canada's Great Kitchen Party Gala · October 2025
+      image: /images/gala-fresh-roots.jpg
+      text: At one of Canada's most distinguished culinary galas — Canada's Great
+        Kitchen Party, celebrated in ten cities and recognized as North
+        America's premier gastronomic event — Stephanie Slen represented Fresh
+        Roots Urban Farm Society, helping raise over $7,500 in support of youth
+        empowerment and community food programs.
     - title: Simon Fraser University President and Vice-Chancellor's Award Dinner 2024
       image: /images/sfu-dinner.jpg
       text: "\"I had the incredible honor of attending the 2024 Simon Fraser
@@ -168,13 +185,6 @@ events:
       link:
         label: Read the event article
         url: https://www.stephanieslen.com/sfu-president-and-vice-chancellors-award-dinner-2024.html
-    - title: Canada's Great Kitchen Party Gala · October 2025
-      image: /images/gala-fresh-roots.jpg
-      text: At one of Canada's most distinguished culinary galas — Canada's Great
-        Kitchen Party, celebrated in ten cities and recognized as North
-        America's premier gastronomic event — Stephanie Slen represented Fresh
-        Roots Urban Farm Society, helping raise over $7,500 in support of youth
-        empowerment and community food programs.
 endorsements:
   title: Endorsements
   intro: "Click on the speech bubbles to read:"
