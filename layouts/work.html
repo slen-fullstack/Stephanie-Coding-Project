@@ -11,7 +11,7 @@
   </script>
   {{ partial "head.html" . }}
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  {{ range slice "css/home.css" "css/work.css" "css/work-intro.css" }}
+  {{ range slice "css/home.css" "css/work.css" "css/work-intro.css" "css/pickles.css" }}
   {{ with resources.Get . | minify | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
   {{ end }}
@@ -167,6 +167,7 @@
       </div>
     </section>
     {{ end }}
+    {{ partial "work/pickles.html" . }}
   </main>
 
   <footer class="hills">
@@ -192,7 +193,7 @@
     <button class="lb-next" type="button" aria-label="Next photo">›</button>
   </div>
 
-  {{ range slice "js/work-intro.js" "js/home.js" "js/work.js" }}
+  {{ range slice "js/work-intro.js" "js/home.js" "js/work.js" "js/pickles.js" }}
   {{ with resources.Get . | minify | fingerprint }}
   <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
   {{ end }}
