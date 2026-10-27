@@ -186,3 +186,83 @@ content:
             fields:
               - { name: label, label: Button text, type: string }
               - { name: url, label: Link, type: string }
+
+  - name: work
+    label: Work Portfolio page
+    type: file
+    path: data/work.yaml
+    format: yaml
+    fields:
+      - name: hero
+        label: Top of the page
+        type: object
+        fields:
+          - { name: kicker, label: Small line above the title, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: intro, label: Intro, type: text }
+      - name: experience
+        label: Experience timeline
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - name: items
+            label: Jobs
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{org}" } }
+            fields:
+              - { name: org, label: Organization, type: string }
+              - { name: place, label: "Location (optional)", type: string }
+              - { name: link, label: "Website link (optional)", type: string }
+              - name: roles
+                label: Roles
+                type: object
+                list: { collapsible: { collapsed: true, summary: "{title}" } }
+                fields:
+                  - { name: title, label: Role, type: string }
+                  - { name: dates, label: Dates, type: string }
+                  - { name: points, label: Bullet points, type: text, list: true }
+              - { name: photos, label: "Photo names from static/images/work (first one is the big photo)", type: string, list: true }
+      - name: certificate
+        label: Certificate
+        type: object
+        fields:
+          - { name: label, label: Small line above, type: string }
+          - { name: title, label: Certificate name, type: string }
+          - { name: issued, label: Issued / credential, type: string }
+          - { name: image, label: Photo name, type: string }
+          - { name: skills, label: Skills, type: string, list: true }
+      - name: education
+        label: Education
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - name: items
+            label: Schools
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{school}" } }
+            fields:
+              - { name: school, label: School, type: string }
+              - { name: degree, label: "Program (optional)", type: string }
+              - { name: dates, label: Dates, type: string }
+              - { name: notes, label: Details, type: string, list: true }
+      - name: volunteering
+        label: Volunteering
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - name: items
+            label: Volunteer roles
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
+            fields:
+              - { name: title, label: Role, type: string }
+              - { name: org, label: "Organization (optional)", type: string }
+              - { name: dates, label: Dates, type: string }
+              - { name: points, label: Bullet points, type: text, list: true }
+              - { name: photos, label: "Photo names from static/images/work", type: string, list: true }
+      - name: gallery
+        label: Snapshots
+        type: object
+        fields:
+          - { name: title, label: Heading, type: string }
+          - { name: intro, label: Intro, type: string }

@@ -55,6 +55,7 @@ main, footer { position: relative; z-index: 1; }
 .topnav a { color: var(--ink); text-decoration: none; position: relative; }
 .topnav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--yellow); transform: scaleX(0); transition: transform .25s; }
 .topnav a:hover::after, .topnav a.active::after { transform: scaleX(1); }
+.topnav a.nav-page { color: var(--yellow); }
 
 /* ── sparkles ── */
 .sparkles { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
