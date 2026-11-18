@@ -88,21 +88,6 @@ content:
                   - { name: label, label: Link text, type: string }
                   - { name: url, label: Link, type: string }
 
-      - name: stats
-        label: Glowing number stars
-        type: object
-        fields:
-          - { name: title, label: Heading, type: string }
-          - name: items
-            label: Stars
-            type: object
-            list: { max: 6, collapsible: { collapsed: true, summary: "{label}" } }
-            fields:
-              - { name: value, label: "Number (no commas)", type: number }
-              - { name: prefix, label: "Before the number (e.g. $)", type: string }
-              - { name: suffix, label: "After the number (e.g. +)", type: string }
-              - { name: label, label: Label, type: string }
-
       - name: scholarships
         label: Scholarship list
         type: object

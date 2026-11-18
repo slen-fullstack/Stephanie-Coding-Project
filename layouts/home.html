@@ -39,7 +39,6 @@
     <nav class="topnav" aria-label="Sections">
       <a href="#about">About</a>
       <a href="#awards">Awards</a>
-      <a href="#numbers">Numbers</a>
       <a href="#moments">Moments</a>
       <a href="#running">Running</a>
       <a href="#endorsements">Endorsements</a>
@@ -140,22 +139,6 @@
               {{ with $h.link }}{{ if .url }}<a class="cloud-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}{{ end }}
             </span>
           </span>
-        </div>
-        {{ end }}
-      </div>
-    </section>
-    {{ end }}
-
-    {{/* ───────── STAT STARS ───────── */}}
-    {{ with $d.stats }}
-    <section id="numbers" class="wrap">
-      <h2 class="reveal">{{ .title }}</h2>
-      <div class="stars">
-        {{ range $i, $s := .items }}
-        <div class="stat reveal" style="--d:{{ mul $i 0.5 }}s">
-          <svg class="stat-star" viewBox="0 0 200 200" aria-hidden="true"><use href="#bigstar"/></svg>
-          <span class="stat-num" data-count="{{ $s.value }}" data-prefix="{{ $s.prefix }}" data-suffix="{{ $s.suffix }}">{{ $s.prefix }}{{ lang.FormatNumber 0 $s.value }}{{ $s.suffix }}</span>
-          <span class="stat-label">{{ $s.label }}</span>
         </div>
         {{ end }}
       </div>
