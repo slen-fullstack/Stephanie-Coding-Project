@@ -156,6 +156,24 @@ running:
 events:
   title: Moments
   items:
+    - title: The People's Voice Article Scholarship Workshop · November 2026
+      images:
+        - /images/trout-lake-group.jpg
+        - /images/trout-lake-room.jpg
+        - /images/trout-lake-speaking.jpg
+      text: Trout Lake Community Centre welcomed Stephanie Slen back for a second
+        time to run a scholarship workshop for local youth. Stephanie started The
+        People's Voice Article after graduating high school with 11
+        scholarships, and for the past three years has spent every free moment
+        supporting low-income students with scholarship matching, essay writing,
+        interview preparation, and university applications, while sharing their
+        inspiring stories. To date, these students have secured $2,401,950 in
+        scholarships to pursue their dreams. "I don't have $2.4 million, but I
+        have the relentless motivation to do everything in my power to help
+        these students."
+      link:
+        label: Read the LinkedIn post
+        url: https://www.linkedin.com/feed/update/urn:li:activity:7525573372123107328/
     - title: Visier × Writers' Exchange Volunteer Evening · August 2026
       images:
         - /images/visier-backpacks.jpg

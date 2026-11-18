@@ -40,8 +40,8 @@
       <a href="#about">About</a>
       <a href="#awards">Awards</a>
       <a href="#numbers">Numbers</a>
-      <a href="#running">Running</a>
       <a href="#moments">Moments</a>
+      <a href="#running">Running</a>
       <a href="#endorsements">Endorsements</a>
       <a href="#contact">Contact</a>
       <a class="nav-page" href="{{ "work/" | relURL }}">Work Portfolio ✦</a>
@@ -162,6 +162,36 @@
     </section>
     {{ end }}
 
+    {{/* ───────── MOMENTS (string lights) ───────── */}}
+    {{ with $d.events }}
+    <section id="moments" class="moments">
+      <svg class="lights" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+        <path class="wire" d="M0 30 Q 360 200 720 60 T 1440 40" />
+        {{ range $i := seq 0 28 }}
+        {{ $t := div (float $i) 28 }}
+        <circle class="bulb" style="--d:{{ mod $i 5 }}" cx="{{ mul $t 1440 }}" cy="0" r="7" data-t="{{ $t }}"/>
+        {{ end }}
+      </svg>
+      <div class="wrap">
+        <h2 class="reveal">{{ .title }}</h2>
+        <div class="hanging">
+          {{ range $i, $e := .items }}
+          <article class="hang reveal{{ if gt (len ($e.images | default slice)) 1 }} wide{{ end }}" style="--d:{{ mul $i 0.8 }}s">
+            <span class="string" aria-hidden="true"></span>
+            <div class="frame">
+              {{ with $e.images }}<div class="frame-photos" style="--n:{{ len . }}">{{ range . }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}</div>
+              {{ else }}{{ with $e.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}{{ end }}
+              <h3>{{ $e.title }}</h3>
+              <p>{{ $e.text }}</p>
+              {{ with $e.link }}{{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}{{ end }}
+            </div>
+          </article>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+    {{ end }}
+
     {{/* ───────── SCHOLARSHIPS ───────── */}}
     {{ with $d.scholarships }}
     <section class="wrap scholarships">
@@ -190,36 +220,6 @@
         <figcaption>— {{ $d.running.quote_by }}</figcaption>
       </figure>
       {{ end }}
-    </section>
-    {{ end }}
-
-    {{/* ───────── MOMENTS (string lights) ───────── */}}
-    {{ with $d.events }}
-    <section id="moments" class="moments">
-      <svg class="lights" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
-        <path class="wire" d="M0 30 Q 360 200 720 60 T 1440 40" />
-        {{ range $i := seq 0 28 }}
-        {{ $t := div (float $i) 28 }}
-        <circle class="bulb" style="--d:{{ mod $i 5 }}" cx="{{ mul $t 1440 }}" cy="0" r="7" data-t="{{ $t }}"/>
-        {{ end }}
-      </svg>
-      <div class="wrap">
-        <h2 class="reveal">{{ .title }}</h2>
-        <div class="hanging">
-          {{ range $i, $e := .items }}
-          <article class="hang reveal{{ if gt (len ($e.images | default slice)) 1 }} wide{{ end }}" style="--d:{{ mul $i 0.8 }}s">
-            <span class="string" aria-hidden="true"></span>
-            <div class="frame">
-              {{ with $e.images }}<div class="frame-photos">{{ range . }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}</div>
-              {{ else }}{{ with $e.image }}<img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" loading="lazy">{{ end }}{{ end }}
-              <h3>{{ $e.title }}</h3>
-              <p>{{ $e.text }}</p>
-              {{ with $e.link }}{{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>{{ end }}{{ end }}
-            </div>
-          </article>
-          {{ end }}
-        </div>
-      </div>
     </section>
     {{ end }}
 
