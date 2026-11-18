@@ -196,7 +196,7 @@ main, footer { position: relative; z-index: 1; }
 .frame { background: var(--paper); color: #2b2440; padding: 14px 14px 1.4rem; border-radius: 6px; box-shadow: 0 0 0 10px var(--wood), 0 20px 40px rgba(0, 0, 30, .5); }
 .frame img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; margin-bottom: 1rem; }
 .hang.wide { grid-column: 1 / -1; }
-.frame-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+.frame-photos { display: grid; grid-template-columns: repeat(var(--n, 2), 1fr); gap: 10px; margin-bottom: 1rem; }
 .frame-photos img { margin-bottom: 0; }
 .frame h3 { font-size: 1.25rem; color: var(--navy); padding: 0 .4rem; }
 .frame p { font-size: .95rem; padding: 0 .4rem; }
