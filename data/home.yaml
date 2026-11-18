@@ -97,19 +97,6 @@ highlights:
       link:
         label: Nurtured Youth Community
         url: https://www.nurturedyouthcommunity.com/
-stats:
-  title: By the numbers…
-  items:
-    - value: 11
-      label: Scholarships
-    - value: 14
-      label: Half marathons
-    - value: 7500
-      prefix: $
-      suffix: +
-      label: Raised at the gala
-    - value: 7
-      label: Published stories
 scholarships:
   title: Scholarship recipient
   intro: "Stephanie Slen is the recipient of eleven scholarships:"
