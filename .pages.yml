@@ -133,14 +133,17 @@ content:
         fields:
           - { name: title, label: Heading, type: string }
           - { name: intro, label: Small line under heading, type: string }
+          - { name: note, label: Small line at the bottom, type: string }
           - name: items
-            label: Endorsements
+            label: Endorsements (newest first)
             type: object
             list: { collapsible: { collapsed: true, summary: "{name}" } }
             fields:
               - { name: name, label: Name, type: string }
               - { name: role, label: Role / title, type: string }
-              - { name: quote, label: Quote, type: text }
+              - { name: headline, label: "Short headline (optional)", type: string }
+              - { name: quote, label: Main quote, type: text }
+              - { name: quote2, label: "Second quote (optional)", type: text }
 
       - name: features
         label: Featured in (framed previews)

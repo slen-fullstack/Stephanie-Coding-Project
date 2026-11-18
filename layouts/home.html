@@ -223,13 +223,16 @@
         <div class="quote-panel reveal">
           {{ range $i, $e := .items }}
           <div class="quote" role="tabpanel" id="quote-{{ $i }}" aria-labelledby="tab-{{ $i }}"{{ if ne $i 0 }} hidden{{ end }}>
+            {{ with $e.headline }}<p class="quote-headline">{{ . }}</p>{{ end }}
             <h3>{{ $e.name }}</h3>
             <p class="quote-role">{{ $e.role }}</p>
             <blockquote>“{{ $e.quote }}”</blockquote>
+            {{ with $e.quote2 }}<blockquote class="quote-more">“{{ . }}”</blockquote>{{ end }}
           </div>
           {{ end }}
         </div>
       </div>
+      {{ with .note }}<p class="endorse-note muted reveal">{{ . }}</p>{{ end }}
     </section>
     {{ end }}
 

@@ -224,6 +224,9 @@ main, footer { position: relative; z-index: 1; }
 .quote { animation: fadeUp .5s ease both; }
 .quote-role { color: var(--teal); font-size: .9rem; }
 .quote blockquote { margin: 0; font-size: 1.05rem; }
+.quote-headline { margin: 0 0 .4rem; color: var(--yellow); font-family: var(--display); font-weight: 600; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; }
+.quote blockquote.quote-more { margin-top: 1rem; padding-left: 1rem; border-left: 3px solid rgba(255, 216, 107, .5); font-size: .95rem; opacity: .85; }
+.endorse-note { margin-top: 1.5rem; text-align: center; font-size: .9rem; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } }
 
 /* ── wooden frames ── */

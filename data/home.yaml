@@ -196,7 +196,46 @@ events:
 endorsements:
   title: Endorsements
   intro: "Click on the speech bubbles to read:"
+  note: Full letters of support are available on request.
   items:
+    - name: Jian Liao
+      role: Housing Outreach Worker, Downtown Eastside Women's Centre
+      headline: Giving back to the Downtown Eastside
+      quote: Today, she works as a Support Worker at Pathways to Education,
+        mentoring low-income youth in the Downtown Eastside, the same community
+        that supported her.
+      quote2: For the past three years, she has spent her free time helping
+        low-income students with scholarship matching, essay writing, interview
+        prep, and university applications.
+    - name: Eva Yueng
+      role: Former President, Strathcona Interact Club
+      headline: 500 toys, 5 years
+      quote: The program grew into a 5-year recurring partnership with Alexander
+        Holburn Beaudin + Lang LLP. Through it, we delivered more than 500 toys
+        to 6 community centres and 3 elementary school classrooms.
+      quote2: She created the 'Adopt a Plant Packages,' which saw more than 50
+        students sign up to take home a plant and care for it.
+    - name: Alexa Pitoulis
+      role: Executive Director, BC Family Doctors & Former Executive Director of
+        Fresh Roots Urban Farm Society
+      headline: From participant to mentor
+      quote: Amidst the global pandemic and a notably challenging year for many
+        youth, Stephanie stretched her leadership skills becoming an important
+        mentor for the cohort.
+      quote2: From working on the farms and at farmer markets across Metro
+        Vancouver, to helping to raise $20,000 at a fundraising gala, and
+        teaching at day camps, her commitment to supporting peers and
+        contributing to her community in diverse and outstanding ways was
+        demonstrated at every turn.
+    - name: Mike Wiskar
+      role: Former School Counsellor, Britannia Secondary
+      headline: Student council president
+      quote: As President of Student Council during the 2022-2023 school year,
+        Stephanie took on one of the most visible and demanding student
+        leadership roles in the school.
+      quote2: She was involved in initiatives that supported LGBTQ+
+        representation, encouraged greater Indigenous representation within
+        student leadership, raised funds for humanitarian and charitable causes.
     - name: Trevor Stokes
       role: Marathon Coach & Department Head – Alternative Programs, Britannia
         Secondary
@@ -206,15 +245,6 @@ endorsements:
         She is hard-wired to do this. She is not doing this to pad an already
         ridiculous resume. She operates selflessly, with a relentless desire to
         make this world better.
-    - name: Alexa Pitoulis
-      role: Executive Director, BC Family Doctors & Former Executive Director of Fresh
-        Roots Urban Farm
-      quote: Stephanie's tenacity, humility, commitment to justice and to her own
-        personal learning and development is truly inspirational. Her impact on
-        the lives of so many Fresh Roots youth participants cannot be
-        understated. Knowing Stephanie gives me hope for the future. I cannot
-        imagine a more deserving recipient for the Young Woman of Distinction
-        Award.
     - name: Cynthia Low
       role: Executive Director, Britannia Community Centre
       quote: The staff, board, and entire community of Britannia Community Services
